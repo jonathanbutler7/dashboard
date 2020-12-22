@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useInterval } from './useInterval';
 import { randomGenerator } from './store/generator';
 import EditModal from './EditModal';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+
 function App() {
   const [messages, setMessages] = useState([]);
   const [isRunning, setIsRunning] = useState(true);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [id, setId] = useState(null);
+  const [plural, setPlural] = useState('messages');
+
+  useEffect(() => {
+    if (messages.length === 1) {
+      setPlural('message');
+    }
+    if (messages.length !== 1) {
+      setPlural('messages');
+    }
+  }, [messages]);
 
   useInterval(
     () => {
@@ -51,6 +62,9 @@ function App() {
         </button>
         <button onClick={(e) => clearAll()}>Clear all messages</button>
         <h1>{isRunning ? 'Running' : 'Paused'}</h1>
+        <p>
+          Displaying {messages.length} {plural}
+        </p>
         {messages.map((msg, key) => {
           let { timestamp, level, id, message } = msg;
           let avatar = level.charAt(0).toUpperCase();
