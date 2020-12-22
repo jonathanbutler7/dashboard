@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
+import style from './EditModal.module.scss'
 
 function EditModal({ openEditModal, setOpenEditModal, id }) {
   return (
@@ -9,7 +10,7 @@ function EditModal({ openEditModal, setOpenEditModal, id }) {
       aria-labelledby='simple-modal-title'
       aria-describedby='simple-modal-description'
     >
-      <div style={{ border: '1px solid green', background: 'gainsboro' }}>
+      <div className={style.modal}>
         <h1>i am a modal</h1>
         <p>{id}</p>
       </div>
