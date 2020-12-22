@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useInterval } from './useInterval';
 import { randomGenerator } from './store/generator';
 import EditModal from './EditModal';
-
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
 function App() {
   const [messages, setMessages] = useState([]);
   const [isRunning, setIsRunning] = useState(true);
@@ -31,7 +32,13 @@ function App() {
     const newMsgs = messages.filter((msg) => msg.id !== id);
     setMessages(newMsgs);
   }
-  
+
+  function pickColor(level) {
+    if (level === 'error') return 'secondary';
+    if (level === 'warn') return 'primary';
+    if (level === 'status') return 'default';
+  }
+
   return (
     <div className='App'>
       <EditModal
@@ -44,17 +51,25 @@ function App() {
         </button>
         <button onClick={(e) => clearAll()}>Clear all messages</button>
         <h1>{isRunning ? 'Running' : 'Paused'}</h1>
-        {messages.map((msg, key) => (
-          <div key={key} style={{ border: '1px solid red' }}>
-            <p>
-              <small>{msg.timestamp}</small>
-            </p>
-            <h5>{msg.level}</h5>
-            <p>{msg.message}</p>
-            <button onClick={(e) => editPost(msg)}>Edit</button>
-            <button onClick={(e) => deleteMessage(msg.id)}>Delete</button>
-          </div>
-        ))}
+        {messages.map((msg, key) => {
+          let { timestamp, level, id, message } = msg;
+          let avatar = level.charAt(0).toUpperCase();
+          return (
+            <div key={key} style={{ border: '1px solid red' }}>
+              <p>
+                <small>{timestamp}</small>
+              </p>
+              <Chip
+                color={pickColor(level)}
+                label={level}
+                avatar={<Avatar>{avatar}</Avatar>}
+              />
+              <p>{message}</p>
+              <button onClick={(e) => editPost(msg)}>Edit</button>
+              <button onClick={(e) => deleteMessage(id)}>Delete</button>
+            </div>
+          );
+        })}
       </header>
     </div>
   );
