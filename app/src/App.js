@@ -1,22 +1,34 @@
 import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import { useInterval } from './useInterval';
+import { randomGenerator } from './generator';
 
 function App() {
+  const [messages, setMessages] = useState([]);
+
+  // setInterval(() => {
+  //   const newMsg = randomGenerator();
+  //   setMessages(newMsg);
+  // }, 2000);
+  // console.log(messages);
+
+  useInterval(() => {
+    const newMsg = randomGenerator();
+    const newSet = [...messages, newMsg];
+    setMessages(newSet);
+  }, 2000);
+  console.log(messages);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        {messages.map((msg) => (
+          <div style={{border: '1px solid red'}}>
+            <p><small>{msg.timestamp}</small></p>
+            <h5>{msg.level}</h5>
+            <p>{msg.message}</p>
+          </div>
+        ))}
       </header>
     </div>
   );
