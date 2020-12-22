@@ -4,6 +4,7 @@ import { randomGenerator } from './store/generator';
 import EditModal from './EditModal';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+import Snackbar from './Snackbar';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -11,6 +12,8 @@ function App() {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [id, setId] = useState(null);
   const [plural, setPlural] = useState('messages');
+  const [snackbar, setSnackbar] = useState(false);
+  const [snackbarMsg, setSnackbarMsg] = useState('');
 
   useEffect(() => {
     if (messages.length === 1) {
@@ -37,14 +40,18 @@ function App() {
   }
   function clearAll() {
     setMessages([]);
+    setSnackbarMsg('Deleted all messages');
+    setSnackbar(true);
   }
 
   function deleteMessage(id) {
     const newMsgs = messages.filter((msg) => msg.id !== id);
     setMessages(newMsgs);
+    setSnackbarMsg('Successfully deleted');
+    setSnackbar(true);
   }
 
-  function pickColor(level) {
+  function pickAvatarColor(level) {
     if (level === 'error') return 'secondary';
     if (level === 'warn') return 'primary';
     if (level === 'status') return 'default';
@@ -55,6 +62,11 @@ function App() {
       <EditModal
         openEditModal={openEditModal}
         setOpenEditModal={setOpenEditModal}
+      />
+      <Snackbar
+        snackbar={snackbar}
+        setSnackbar={setSnackbar}
+        snackbarMsg={snackbarMsg}
       />
       <header className='App-header'>
         <button onClick={(e) => setIsRunning(!isRunning)}>
@@ -74,7 +86,7 @@ function App() {
                 <small>{timestamp}</small>
               </p>
               <Chip
-                color={pickColor(level)}
+                color={pickAvatarColor(level)}
                 label={level}
                 avatar={<Avatar>{avatar}</Avatar>}
               />
