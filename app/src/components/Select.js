@@ -7,7 +7,7 @@ import { useDashboard } from '../context';
 import { useStyles } from '../helpers/helpers';
 
 function SelectMenu({ inEditView, id }) {
-  const { setSelect, select, messages, setMessages } = useDashboard();
+  const { setSelect, messages, setMessages } = useDashboard();
   let options;
   const levelsAll = ['view all', 'warn', 'error', 'status'];
   const levels = ['warn', 'error', 'status'];
