@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useInterval } from './useInterval';
 import { randomGenerator } from './store/generator';
 import Message from './Message';
-import EditModal from './EditModal';
+import EditModal from './Modal';
 import Snackbar from './Snackbar';
 import Header from './Header';
 
@@ -13,6 +13,7 @@ function App() {
   const [id, setId] = useState(null);
   const [snackbar, setSnackbar] = useState(false);
   const [snackbarMsg, setSnackbarMsg] = useState('');
+  const [sortValue, setSortValue] = useState('');
 
   useInterval(
     () => {
@@ -27,6 +28,15 @@ function App() {
     setMessages([]);
     setSnackbarMsg('Deleted all messages');
     setSnackbar(true);
+  }
+
+  // useEffect(() => {
+  //   showOnly();
+  // }, [messages]);
+
+  function showOnly() {
+    let newValues = messages.filter((message) => message.level === sortValue);
+    setMessages(newValues);
   }
 
   function setSort(level) {
@@ -50,6 +60,7 @@ function App() {
         isRunning={isRunning}
         setIsRunning={setIsRunning}
         clearAll={clearAll}
+        setSortValue={setSortValue}
       />
       <Message
         messages={messages}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
-import style from './EditModal.module.scss'
+import style from './Modal.module.scss';
 
 function EditModal({ openEditModal, setOpenEditModal, id }) {
   return (
