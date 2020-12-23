@@ -6,7 +6,7 @@ import { useDashboard } from '../context';
 
 export default function SimpleSnackbar() {
   const { setSnackbar, snackbar, snackbarMsg } = useDashboard();
-  
+
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -22,7 +22,7 @@ export default function SimpleSnackbar() {
           horizontal: 'left',
         }}
         open={snackbar}
-        autoHideDuration={4000}
+        autoHideDuration={3000}
         onClose={handleClose}
         message={snackbarMsg}
         action={

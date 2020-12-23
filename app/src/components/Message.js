@@ -70,7 +70,7 @@ function Message() {
   }
 
   return (
-    <div className={style.main}>
+    < >
       {messages.map((msg, key) => {
         let { timestamp, level, id, message, confirm } = msg;
         let avatar = level.charAt(0).toUpperCase();
@@ -116,7 +116,7 @@ function Message() {
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
 
