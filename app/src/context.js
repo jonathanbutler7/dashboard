@@ -21,6 +21,11 @@ export function DashboardProvider({ children }) {
     setSnackbar(true);
   }
 
+  function closeEditModal() {
+    setOpenEditModal(false);
+    setIsRunning(true);
+  }
+
   useInterval(
     () => {
       const newMsg = randomGenerator();
@@ -42,6 +47,7 @@ export function DashboardProvider({ children }) {
     setSnackbar,
     openEditModal,
     setOpenEditModal,
+    closeEditModal,
     id,
     setId,
   };

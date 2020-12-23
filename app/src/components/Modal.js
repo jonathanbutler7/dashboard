@@ -1,20 +1,22 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import style from './Modal.module.scss';
+import EditMessage from './EditMessage';
 import { useDashboard } from '../context';
 
 function EditModal() {
-  const { openEditModal, setOpenEditModal } = useDashboard();
+  const { openEditModal, closeEditModal, messages, id } = useDashboard();
+  let messageToEdit = messages.filter((message) => id === message.id);
+
   return (
     <Modal
       open={openEditModal}
-      onClose={(e) => setOpenEditModal(false)}
+      onClose={(e) => closeEditModal()}
       aria-labelledby='simple-modal-title'
       aria-describedby='simple-modal-description'
     >
       <div className={style.modal}>
-        <h1>i am a modal</h1>
-        
+        {messageToEdit && <EditMessage message={messageToEdit} />}
       </div>
     </Modal>
   );

@@ -16,6 +16,7 @@ function Message() {
     setSnackbarMsg,
     setId,
   } = useDashboard();
+
   function editPost(id) {
     setIsRunning(false);
     setOpenEditModal(true);
@@ -40,7 +41,7 @@ function Message() {
         let { timestamp, level, id, message } = msg;
         let avatar = level.charAt(0).toUpperCase();
         return (
-          <div key={key} className={style.main}>
+          <div key={key} className={style.main} id={id}>
             <p>
               <small>{timestamp}</small>
             </p>
@@ -52,7 +53,7 @@ function Message() {
             <h4>{message}</h4>
             <div className={style.buttons}>
               <Button
-                onClick={(e) => editPost(msg)}
+                onClick={(e) => editPost(id)}
                 variant='contained'
                 color='primary'
                 style={{ marginRight: '1rem' }}
