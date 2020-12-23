@@ -5,25 +5,28 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import { levels } from '../store/levels';
+import { useDashboard } from '../context';
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
 }));
 
 function SelectMe() {
+    const { setSelect } = useDashboard();
   const classes = useStyles();
   const [age, setAge] = useState('');
 
   const handleChange = (event) => {
     setAge(event.target.value);
+    setSelect(event.target.value);
   };
-  console.log(age);
+
   return (
     <FormControl className={classes.formControl}>
       <InputLabel id='demo-simple-select-label'>level</InputLabel>
