@@ -1,7 +1,10 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
-import style from './Message.module.scss'
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import style from './Message.module.scss';
+
 function Message({
   messages,
   setIsRunning,
@@ -10,7 +13,7 @@ function Message({
   setMessages,
   setSnackbar,
   setSnackbarMsg,
-  clearAll
+  clearAll,
 }) {
   function editPost(id) {
     setIsRunning(false);
@@ -45,9 +48,25 @@ function Message({
               label={level}
               avatar={<Avatar>{avatar}</Avatar>}
             />
-            <p>{message}</p>
-            <button onClick={(e) => editPost(msg)}>Edit</button>
-            <button onClick={(e) => deleteMessage(id)}>Delete</button>
+            <h4>{message}</h4>
+            <div className={style.buttons}>
+              <Button
+                onClick={(e) => editPost(msg)}
+                variant='contained'
+                color='primary'
+                style={{ marginRight: '1rem' }}
+              >
+                Edit
+              </Button>
+              <Button
+                onClick={(e) => deleteMessage(id)}
+                variant='contained'
+                color='secondary'
+                startIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
+            </div>
           </div>
         );
       })}

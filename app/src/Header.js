@@ -15,8 +15,9 @@ function Header({ setIsRunning, isRunning, messages, clearAll }) {
   }, [messages]);
   return (
     <div className={style.main}>
-      <h1>{isRunning ? 'Running' : 'Paused'}</h1>
-      
+      <h1>Dashboard</h1>
+      <h3>Status: {isRunning ? 'Running' : 'Paused'}</h3>
+
       <p>
         Displaying {messages.length} {plural}
       </p>
@@ -25,7 +26,7 @@ function Header({ setIsRunning, isRunning, messages, clearAll }) {
       </button>
       <button onClick={(e) => clearAll()}>Clear all messages</button>
       <br />
-      <p>Sort by</p>
+      <p>Show only:</p>
       <select name='' id=''>
         <option value='select'>Please select one</option>
         {levels.map((level, key) => (

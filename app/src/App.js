@@ -34,7 +34,7 @@ function App() {
   }
 
   return (
-    <div className='App'>
+    <div>
       <EditModal
         openEditModal={openEditModal}
         setOpenEditModal={setOpenEditModal}
@@ -51,7 +51,6 @@ function App() {
         setIsRunning={setIsRunning}
         clearAll={clearAll}
       />
-
       <Message
         messages={messages}
         setId={setId}
