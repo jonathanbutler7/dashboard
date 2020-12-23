@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
-import { levels } from '../store/levels';
 import { useDashboard } from '../context';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,18 +25,23 @@ function SelectMe() {
     setAge(event.target.value);
     setSelect(event.target.value);
   };
-
+  const levels = ['view all', 'warn', 'error', 'status'];
   return (
-    <FormControl className={classes.formControl}>
-      <InputLabel id='demo-simple-select-label'>level</InputLabel>
+    <FormControl variant='outlined' className={classes.formControl}>
+      <InputLabel
+        id='demo-simple-select-outlined-label'
+        style={{ color: '#E0E0E0' }}
+      >
+        Levels
+      </InputLabel>
       <Select
-        labelId='demo-simple-select-label'
-        id='demo-simple-select'
+        labelId='demo-simple-select-outlined-label'
+        id='demo-simple-select-outlined'
         value={age}
         onChange={handleChange}
-        style={{ background: '#E0E0E0' }}
+        label='Levels'
+        style={{ color: '#E0E0E0' }}
       >
-        <MenuItem>view all</MenuItem>
         {levels.map((level, key) => (
           <MenuItem key={key} value={level}>
             {level}
