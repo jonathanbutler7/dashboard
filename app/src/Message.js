@@ -1,7 +1,7 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
-
+import style from './Message.module.scss'
 function Message({
   messages,
   setIsRunning,
@@ -10,6 +10,7 @@ function Message({
   setMessages,
   setSnackbar,
   setSnackbarMsg,
+  clearAll
 }) {
   function editPost(id) {
     setIsRunning(false);
@@ -35,7 +36,7 @@ function Message({
         let { timestamp, level, id, message } = msg;
         let avatar = level.charAt(0).toUpperCase();
         return (
-          <div key={key} style={{ border: '1px solid red' }}>
+          <div key={key} className={style.main}>
             <p>
               <small>{timestamp}</small>
             </p>
