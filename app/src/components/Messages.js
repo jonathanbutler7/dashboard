@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Message from './Message';
 import style from './Messages.module.scss';
 import EditMessage from './EditMessage';
 import { useDashboard } from '../context';
+
 function Messages() {
-  const { messages, select, chosenMessages } = useDashboard();
-  // useEffect(() => {
-  //   if (select) {
-  //     chosenMessages = messages.filter((message) => message.level === select);
-  //     console.log(chosenMessages);
-  //   }
-  // }, [select]);
+  const { chosenMessages } = useDashboard();
   return (
     <div className={style.main}>
       {chosenMessages.map((msg, key) => (

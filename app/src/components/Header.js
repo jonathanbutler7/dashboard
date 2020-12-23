@@ -2,22 +2,12 @@ import React, { useState, useEffect } from 'react';
 import style from './Header.module.scss';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Select from './Select'
+import Select from './Select';
 import { useDashboard } from '../context';
 
 function Header() {
   const { messages, setIsRunning, isRunning, clearAll } = useDashboard();
   const [plural, setPlural] = useState('messages');
-  const [msgType, setMsgType] = useState('');
-
-  function handleChange(e) {
-    setMsgType(e.target.value);
-    // setSortValue(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
 
   useEffect(() => {
     if (messages.length === 1) {
@@ -52,14 +42,6 @@ function Header() {
       </Button>
       <br />
       <p>Show only:</p>
-      {/* <form onSubmit={handleSubmit}>
-        <select onChange={handleChange} value={msgType}>
-          {levels.map((level, key) => (
-            <option key={key}>{level}</option>
-          ))}
-        </select>
-        <button type='submit'>Submit</button>
-      </form> */}
       <Select />
     </div>
   );
