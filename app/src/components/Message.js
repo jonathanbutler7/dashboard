@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Dialogue from './Dialogue';
 import style from './Message.module.scss';
 import { useDashboard } from '../context';
 
@@ -16,11 +17,30 @@ function Message() {
     setSnackbarMsg,
     setId,
   } = useDashboard();
-
+  const [dialogueOpen, setDialogueOpen] = useState(false);
   function editPost(id) {
     setIsRunning(false);
     setOpenEditModal(true);
     setId(id);
+  }
+
+  function openDialogue() {
+    setDialogueOpen(true);
+    setIsRunning(false);
+  }
+  function closeDialogue(id) {
+    setDialogueOpen(false);
+    setIsRunning(true);
+    const newMsgs = messages.map((msg) =>
+      id === msg.id
+        ? {
+            ...msg,
+            confirm: false,
+          }
+        : msg
+    );
+
+    setMessages(newMsgs);
   }
 
   function deleteMessage(id) {
@@ -30,18 +50,31 @@ function Message() {
     setSnackbar(true);
   }
 
+  function openConfirm(id) {
+    const newMsgs = messages.map((msg) =>
+      id === msg.id
+        ? {
+            ...msg,
+            confirm: true,
+          }
+        : msg
+    );
+
+    setMessages(newMsgs);
+  }
+
   function pickAvatarColor(level) {
     if (level === 'error') return 'secondary';
     if (level === 'warn') return 'primary';
     if (level === 'status') return 'default';
   }
   return (
-    <>
+    <div className={style.main}>
       {messages.map((msg, key) => {
-        let { timestamp, level, id, message } = msg;
+        let { timestamp, level, id, message, confirm } = msg;
         let avatar = level.charAt(0).toUpperCase();
         return (
-          <div key={key} className={style.main} id={id}>
+          <div key={key} className={style.message} id={id}>
             <p>
               <small>{timestamp}</small>
             </p>
@@ -52,6 +85,15 @@ function Message() {
             />
             <h4>{message}</h4>
             <div className={style.buttons}>
+              {confirm && (
+                <Dialogue
+                  open={dialogueOpen}
+                  closeDialogue={closeDialogue}
+                  id={id}
+                  deleteMessage={deleteMessage}
+                />
+              )}
+
               <Button
                 onClick={(e) => editPost(id)}
                 variant='contained'
@@ -61,7 +103,8 @@ function Message() {
                 Edit
               </Button>
               <Button
-                onClick={(e) => deleteMessage(id)}
+                // onClick={(e) => deleteMessage(id)}
+                onClick={(e) => openConfirm(id)}
                 variant='contained'
                 color='secondary'
                 startIcon={<DeleteIcon />}
@@ -72,7 +115,7 @@ function Message() {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 
