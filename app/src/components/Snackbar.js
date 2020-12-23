@@ -21,7 +21,7 @@ export default function SimpleSnackbar() {
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        open={snackbar}
+        open={Boolean(snackbar)}
         autoHideDuration={3000}
         onClose={handleClose}
         message={snackbarMsg}

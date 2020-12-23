@@ -3,8 +3,10 @@ import style from './EditMessage.module.scss';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
+import { useDashboard } from '../context';
 
 function EditMessage({ msg }) {
+  const { messages, setMessages } = useDashboard();
   let { timestamp, level, id, message, confirm } = msg;
   const [text, setText] = useState(message);
   function pickAvatarColor(level) {
@@ -23,11 +25,32 @@ function EditMessage({ msg }) {
         break;
     }
   }
-  console.log(text);
 
   function setNewMsg() {
-    console.log('setting')
+    const newMsgs = messages.map((msg) =>
+      id === msg.id
+        ? {
+            ...msg,
+            message: text,
+          }
+        : msg
+    );
+    setMessages(newMsgs);
+    closeEditWindow(newMsgs);
   }
+
+  function closeEditWindow() {
+    const newMsgs = messages.map((msg) =>
+      id === msg.id
+        ? {
+            ...msg,
+            edit: false,
+          }
+        : msg
+    );
+    setMessages(newMsgs);
+  }
+
   return (
     <>
       <div className={style.editMessage} id={id}>
@@ -49,7 +72,13 @@ function EditMessage({ msg }) {
           defaultValue={text}
           onChange={(e) => changeHandler(e, 'text')}
         ></textarea>
-        <MessageButtons confirm={confirm} id={id} editMode={true} setNewMsg={setNewMsg} />
+        <MessageButtons
+          confirm={confirm}
+          id={id}
+          editMode={true}
+          setNewMsg={setNewMsg}
+          closeEditWindow={closeEditWindow}
+        />
       </div>
     </>
   );

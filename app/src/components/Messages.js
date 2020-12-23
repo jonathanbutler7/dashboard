@@ -9,7 +9,9 @@ function Messages() {
   return (
     <div className={style.main}>
       {messages.map((msg, key) => (
-        <>{msg.edit ? <EditMessage msg={msg} /> : <Message msg={msg} />}</>
+        <div key={key}>
+          {msg.edit ? <EditMessage msg={msg} /> : <Message msg={msg} />}
+        </div>
       ))}
     </div>
   );
