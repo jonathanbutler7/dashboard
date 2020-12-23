@@ -1,5 +1,5 @@
 import React, { useContext, useState, createContext, useEffect } from 'react';
-import { useInterval } from './useInterval';
+import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 const DashboardContext = createContext();
 

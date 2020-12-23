@@ -7,7 +7,7 @@ import Select from './Select';
 import { useDashboard } from '../context';
 
 function EditMessage({ msg }) {
-  const { messages, setMessages } = useDashboard();
+  const { messages, setMessages, setIsRunning } = useDashboard();
   let { timestamp, level, id, message, confirm } = msg;
   const [text, setText] = useState(message);
   function pickAvatarColor(level) {
@@ -38,6 +38,7 @@ function EditMessage({ msg }) {
         : msg
     );
     setMessages(newMsgs);
+    setIsRunning(true);
   }
 
   function closeEditWindow() {
@@ -50,6 +51,7 @@ function EditMessage({ msg }) {
         : msg
     );
     setMessages(newMsgs);
+    setIsRunning(true);
   }
 
   return (

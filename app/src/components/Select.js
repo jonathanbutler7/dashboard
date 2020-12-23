@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/core/styles';
 import { useDashboard } from '../context';
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+import { useStyles } from '../helpers/helpers';
 
 function SelectMenu({ inEditView, id }) {
   const { setSelect, select, messages, setMessages } = useDashboard();
+  let options;
+  const levelsAll = ['view all', 'warn', 'error', 'status'];
+  const levels = ['warn', 'error', 'status'];
   const classes = useStyles();
+
+  if (inEditView) {
+    options = levels;
+  }
+  if (!inEditView) {
+    options = levelsAll;
+  }
 
   const handleChange = (event) => {
     if (!inEditView) {
@@ -41,7 +41,7 @@ function SelectMenu({ inEditView, id }) {
     );
     setMessages(newMsgs);
   }
-  const levels = ['view all', 'warn', 'error', 'status'];
+
   return (
     <FormControl variant='outlined' className={classes.formControl}>
       <InputLabel
@@ -58,7 +58,7 @@ function SelectMenu({ inEditView, id }) {
         label='Levels'
         style={{ color: '#E0E0E0' }}
       >
-        {levels.map((level, key) => (
+        {options.map((level, key) => (
           <MenuItem key={key} value={level}>
             {level}
           </MenuItem>
