@@ -5,9 +5,16 @@ import PlayPauseIcons from './PlayPauseIcons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Select from './Select';
 import { useDashboard } from '../context';
+import Chart from './Chart';
 
 function Menu() {
-  const { messages, setIsRunning, isRunning, clearAll, chosenMessages } = useDashboard();
+  const {
+    messages,
+    setIsRunning,
+    isRunning,
+    clearAll,
+    chosenMessages,
+  } = useDashboard();
   const [plural, setPlural] = useState('messages');
 
   useEffect(() => {
@@ -23,6 +30,7 @@ function Menu() {
     <div className={style.main}>
       <h3>Status: {isRunning ? 'Running' : 'Paused'}</h3>
       <PlayPauseIcons isRunning={isRunning} />
+      <Chart />
       <p>
         Displaying {chosenMessages.length} {plural}
       </p>
