@@ -10,11 +10,11 @@ export function useDashboard() {
 export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
   const [messages, setMessages] = useState([]);
-  const [snackbar, setSnackbar] = useState(false);
+  const [snackbar, setSnackbar] = useState('');
   const [snackbarMsg, setSnackbarMsg] = useState('');
   const [openEditModal, setOpenEditModal] = useState(false);
   const [id, setId] = useState(null);
-  
+
   function clearAll() {
     setMessages([]);
     setSnackbarMsg('Deleted all messages');

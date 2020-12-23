@@ -5,19 +5,18 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDashboard } from './context';
 
-function Header({ clearAll, setSortValue }) {
-  const { messages, setIsRunning, isRunning } = useDashboard();
+function Header() {
+  const { messages, setIsRunning, isRunning, clearAll } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [msgType, setMsgType] = useState('');
 
   function handleChange(e) {
     setMsgType(e.target.value);
-    setSortValue(e.target.value);
+    // setSortValue(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(msgType);
   }
 
   useEffect(() => {

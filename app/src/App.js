@@ -1,7 +1,7 @@
-import Message from './Message';
 import EditModal from './Modal';
 import Snackbar from './Snackbar';
 import Header from './Header';
+import Messages from './Messages'
 import { DashboardProvider } from './context';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <EditModal />
       <Snackbar />
       <Header />
-      <Message />
+      <Messages />
     </DashboardProvider>
   );
 }
