@@ -4,19 +4,12 @@ import style from './Dialogue.module.scss';
 import { useDashboard } from '../context';
 
 function Dialogue({ open, closeDialogue, id }) {
-  const {
-    messages,
-    setMessages,
-    setSnackbar,
-    setSnackbarMsg,
-    setIsRunning,
-  } = useDashboard();
+  const { messages, setMessages, setSnackbar, setIsRunning } = useDashboard();
 
   function deleteMessage(id) {
     const newMsgs = messages.filter((msg) => msg.id !== id);
     setMessages(newMsgs);
-    setSnackbarMsg('Successfully deleted');
-    setSnackbar(true);
+    setSnackbar('Successfully deleted');
     setIsRunning(true);
   }
 

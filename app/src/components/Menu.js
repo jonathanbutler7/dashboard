@@ -13,7 +13,7 @@ function Menu() {
     setIsRunning,
     isRunning,
     clearAll,
-    chosenMessages,
+    filteredMessages,
   } = useDashboard();
   const [plural, setPlural] = useState('messages');
 
@@ -32,7 +32,7 @@ function Menu() {
       <PlayPauseIcons isRunning={isRunning} />
       <Chart />
       <p>
-        Displaying {chosenMessages.length} {plural}
+        Displaying {filteredMessages.length} {plural}
       </p>
       <Button
         onClick={(e) => setIsRunning(!isRunning)}

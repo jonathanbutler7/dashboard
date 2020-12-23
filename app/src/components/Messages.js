@@ -5,10 +5,10 @@ import EditMessage from './EditMessage';
 import { useDashboard } from '../context';
 
 function Messages() {
-  const { chosenMessages } = useDashboard();
+  const { filteredMessages } = useDashboard();
   return (
     <div className={style.main}>
-      {chosenMessages.map((msg, key) => (
+      {filteredMessages.map((msg, key) => (
         <div key={key}>
           {msg.edit ? <EditMessage msg={msg} /> : <Message msg={msg} />}
         </div>

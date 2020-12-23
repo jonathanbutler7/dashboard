@@ -10,34 +10,10 @@ export function useDashboard() {
 export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
   const [messages, setMessages] = useState([]);
+  const [filteredMessages, setFilteredMessages] = useState(messages);
   const [snackbar, setSnackbar] = useState('');
-  const [snackbarMsg, setSnackbarMsg] = useState('');
-  const [openEditModal, setOpenEditModal] = useState(false);
   const [select, setSelect] = useState('');
-  const [chosenMessages, setChosenMessages] = useState(messages);
   const [id, setId] = useState(null);
-
-  useEffect(() => {
-    if (select === 'view all') {
-      setChosenMessages(messages)
-    }
-    else if (select) {
-      setChosenMessages(messages.filter((message) => message.level === select));
-    } else {
-      setChosenMessages(messages);
-    }
-  }, [messages, select]);
-  
-  function clearAll() {
-    setMessages([]);
-    setSnackbarMsg('Deleted all messages');
-    setSnackbar(true);
-  }
-
-  function closeEditModal() {
-    setOpenEditModal(false);
-    setIsRunning(true);
-  }
 
   useInterval(
     () => {
@@ -48,25 +24,37 @@ export function DashboardProvider({ children }) {
     isRunning ? 2000 : null
   );
 
+  useEffect(() => {
+    if (select === 'view all') {
+      setFilteredMessages(messages);
+    } else if (select) {
+      setFilteredMessages(
+        messages.filter((message) => message.level === select)
+      );
+    } else {
+      setFilteredMessages(messages);
+    }
+  }, [messages, select]);
+
+  function clearAll() {
+    setMessages([]);
+    setSnackbar('Deleted all messages');
+  }
+
   const value = {
     messages,
     setMessages,
     isRunning,
     setIsRunning,
     clearAll,
-    snackbarMsg,
-    setSnackbarMsg,
     snackbar,
     setSnackbar,
-    openEditModal,
-    setOpenEditModal,
-    closeEditModal,
     id,
     setId,
     select,
     setSelect,
-    chosenMessages,
-    setChosenMessages,
+    filteredMessages,
+    setFilteredMessages,
   };
 
   return (

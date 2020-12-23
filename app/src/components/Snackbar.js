@@ -5,7 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { useDashboard } from '../context';
 
 export default function SimpleSnackbar() {
-  const { setSnackbar, snackbar, snackbarMsg } = useDashboard();
+  const { setSnackbar, snackbar } = useDashboard();
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -24,7 +24,7 @@ export default function SimpleSnackbar() {
         open={Boolean(snackbar)}
         autoHideDuration={3000}
         onClose={handleClose}
-        message={snackbarMsg}
+        message={snackbar}
         action={
           <>
             <IconButton
