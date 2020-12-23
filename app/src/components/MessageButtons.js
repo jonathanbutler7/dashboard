@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDashboard } from '../context';
 
-function MessageButtons({ id, confirm }) {
+function MessageButtons({ id, confirm, editMode }) {
   const [dialogueOpen, setDialogueOpen] = useState(false);
   const {
     messages,
@@ -13,7 +13,6 @@ function MessageButtons({ id, confirm }) {
     setMessages,
     setSnackbar,
     setSnackbarMsg,
-    setId,
   } = useDashboard();
 
   function deleteMessage(id) {
@@ -23,9 +22,33 @@ function MessageButtons({ id, confirm }) {
     setSnackbar(true);
   }
 
+  function editButtonClicked(id) {
+    if (editMode) {
+      const newMsgs = messages.map((msg) =>
+        id === msg.id
+          ? {
+              ...msg,
+              edit: false,
+            }
+          : msg
+      );
+      setMessages(newMsgs);
+    } else {
+      editPost(id);
+    }
+  }
+
   function editPost(id) {
     setIsRunning(false);
-    setId(id);
+    const newMsgs = messages.map((msg) =>
+      id === msg.id
+        ? {
+            ...msg,
+            edit: true,
+          }
+        : msg
+    );
+    setMessages(newMsgs);
   }
 
   function openConfirm(id) {
@@ -67,12 +90,12 @@ function MessageButtons({ id, confirm }) {
       )}
 
       <Button
-        onClick={(e) => editPost(id)}
+        onClick={(e) => editButtonClicked(id)}
         variant='contained'
         color='primary'
         style={{ marginRight: '1rem' }}
       >
-        Edit
+        {editMode ? 'Cancel' : 'Edit'}
       </Button>
       <Button
         onClick={(e) => openConfirm(id)}
