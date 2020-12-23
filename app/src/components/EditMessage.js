@@ -9,14 +9,7 @@ function EditMessage({ message }) {
 
   return (
     <div className={style.main}>
-      <div className={style.title}>
-        <h1>Edit message details:</h1>
-        <AiOutlineCloseCircle onClick={() => setOpenEditModal(false)} />
-      </div>
-      <p>{timestamp}</p>
-      <p>{level}</p>
-      <p>{id}</p>
-      <p>{msg}</p>
+     
     </div>
   );
 }
