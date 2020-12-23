@@ -6,6 +6,7 @@ import { useDashboard } from '../context';
 
 export default function SimpleSnackbar() {
   const { setSnackbar, snackbar, snackbarMsg } = useDashboard();
+  
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;

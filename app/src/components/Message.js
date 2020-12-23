@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import Dialogue from './Dialogue';
+import style from './Message.module.scss';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Dialogue from './Dialogue';
-import style from './Message.module.scss';
 import { useDashboard } from '../context';
 
 function Message() {
@@ -24,10 +24,10 @@ function Message() {
     setId(id);
   }
 
-  function openDialogue() {
-    setDialogueOpen(true);
-    setIsRunning(false);
-  }
+  // function openDialogue() {
+  //   setDialogueOpen(true);
+  //   setIsRunning(false);
+  // }
   function closeDialogue(id) {
     setDialogueOpen(false);
     setIsRunning(true);
@@ -68,6 +68,7 @@ function Message() {
     if (level === 'warn') return 'primary';
     if (level === 'status') return 'default';
   }
+
   return (
     <div className={style.main}>
       {messages.map((msg, key) => {

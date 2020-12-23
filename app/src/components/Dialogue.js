@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import style from './Dialogue.module.scss';
+
 function Dialogue({ open, closeDialogue, id, deleteMessage }) {
   return (
     <div className={style.main} open={open}>
