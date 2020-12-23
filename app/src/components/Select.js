@@ -8,17 +8,17 @@ import { levels } from '../store/levels';
 import { useDashboard } from '../context';
 
 const useStyles = makeStyles((theme) => ({
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 function SelectMe() {
-    const { setSelect } = useDashboard();
+  const { setSelect } = useDashboard();
   const classes = useStyles();
   const [age, setAge] = useState('');
 
@@ -35,7 +35,9 @@ function SelectMe() {
         id='demo-simple-select'
         value={age}
         onChange={handleChange}
+        style={{ background: '#E0E0E0' }}
       >
+        <MenuItem>view all</MenuItem>
         {levels.map((level, key) => (
           <MenuItem key={key} value={level}>
             {level}

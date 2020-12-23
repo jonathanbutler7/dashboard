@@ -18,7 +18,10 @@ export function DashboardProvider({ children }) {
   const [id, setId] = useState(null);
 
   useEffect(() => {
-    if (select) {
+    if (select === 'view all') {
+      setChosenMessages(messages)
+    }
+    else if (select) {
       setChosenMessages(messages.filter((message) => message.level === select));
     } else {
       setChosenMessages(messages);
