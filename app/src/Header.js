@@ -3,8 +3,10 @@ import { levels } from './store/levels';
 import style from './Header.module.scss';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useDashboard } from './context';
 
-function Header({ setIsRunning, isRunning, messages, clearAll, setSortValue }) {
+function Header({ clearAll, setSortValue }) {
+  const { messages, setIsRunning, isRunning } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [msgType, setMsgType] = useState('');
 
@@ -54,7 +56,7 @@ function Header({ setIsRunning, isRunning, messages, clearAll, setSortValue }) {
       <form onSubmit={handleSubmit}>
         <select onChange={handleChange} value={msgType}>
           {levels.map((level, key) => (
-            <option>{level}</option>
+            <option key={key}>{level}</option>
           ))}
         </select>
         <button type='submit'>Submit</button>

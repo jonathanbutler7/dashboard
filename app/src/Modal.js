@@ -1,8 +1,10 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import style from './Modal.module.scss';
+import { useDashboard } from './context';
 
-function EditModal({ openEditModal, setOpenEditModal, id }) {
+function EditModal() {
+  const { openEditModal, setOpenEditModal } = useDashboard();
   return (
     <Modal
       open={openEditModal}
@@ -12,7 +14,7 @@ function EditModal({ openEditModal, setOpenEditModal, id }) {
     >
       <div className={style.modal}>
         <h1>i am a modal</h1>
-        <p>{id}</p>
+        
       </div>
     </Modal>
   );

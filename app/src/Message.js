@@ -4,17 +4,18 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import style from './Message.module.scss';
+import { useDashboard } from './context';
 
-function Message({
-  messages,
-  setIsRunning,
-  setOpenEditModal,
-  setId,
-  setMessages,
-  setSnackbar,
-  setSnackbarMsg,
-  clearAll,
-}) {
+function Message() {
+  const {
+    messages,
+    setIsRunning,
+    setOpenEditModal,
+    setMessages,
+    setSnackbar,
+    setSnackbarMsg,
+    setId,
+  } = useDashboard();
   function editPost(id) {
     setIsRunning(false);
     setOpenEditModal(true);
