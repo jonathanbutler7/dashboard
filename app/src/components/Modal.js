@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import style from './Modal.module.scss';
-import { useDashboard } from './context';
+import { useDashboard } from '../context';
 
 function EditModal() {
   const { openEditModal, setOpenEditModal } = useDashboard();

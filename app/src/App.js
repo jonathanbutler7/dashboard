@@ -1,7 +1,7 @@
-import EditModal from './Modal';
+import EditModal from './components/Modal';
 import Snackbar from './Snackbar';
-import Header from './Header';
-import Messages from './Messages'
+import Header from './components/Header';
+import Messages from './components/Messages'
 import { DashboardProvider } from './context';
 
 function App() {
