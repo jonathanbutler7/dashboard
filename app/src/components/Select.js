@@ -16,15 +16,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SelectMe() {
-  const { setSelect } = useDashboard();
+function SelectMenu({ inEditView, id }) {
+  const { setSelect, select, messages, setMessages } = useDashboard();
   const classes = useStyles();
-  const [age, setAge] = useState('');
 
   const handleChange = (event) => {
-    setAge(event.target.value);
-    setSelect(event.target.value);
+    if (!inEditView) {
+      setSelect(event.target.value);
+    }
+    if (inEditView) {
+      setSelect(event.target.value);
+      changeLevel(event.target.value);
+    }
   };
+
+  function changeLevel(level) {
+    const newMsgs = messages.map((msg) =>
+      id === msg.id
+        ? {
+            ...msg,
+            level: level,
+          }
+        : msg
+    );
+    setMessages(newMsgs);
+  }
   const levels = ['view all', 'warn', 'error', 'status'];
   return (
     <FormControl variant='outlined' className={classes.formControl}>
@@ -37,7 +53,7 @@ function SelectMe() {
       <Select
         labelId='demo-simple-select-outlined-label'
         id='demo-simple-select-outlined'
-        value={age}
+        value={select}
         onChange={handleChange}
         label='Levels'
         style={{ color: '#E0E0E0' }}
@@ -52,4 +68,4 @@ function SelectMe() {
   );
 }
 
-export default SelectMe;
+export default SelectMenu;

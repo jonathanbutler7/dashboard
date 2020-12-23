@@ -3,6 +3,7 @@ import style from './EditMessage.module.scss';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
+import Select from './Select';
 import { useDashboard } from '../context';
 
 function EditMessage({ msg }) {
@@ -32,11 +33,11 @@ function EditMessage({ msg }) {
         ? {
             ...msg,
             message: text,
+            edit: false,
           }
         : msg
     );
     setMessages(newMsgs);
-    closeEditWindow(newMsgs);
   }
 
   function closeEditWindow() {
@@ -63,6 +64,7 @@ function EditMessage({ msg }) {
           label={level}
           avatar={<Avatar>{avatar}</Avatar>}
         />
+        <Select inEditView={true} id={id} />
         <br />
         <textarea
           name=''
