@@ -1,14 +1,8 @@
-import React, {
-  useContext,
-  useState,
-  createContext,
-  useEffect,
-  useReducer,
-} from 'react';
+import React, { useContext, useState, useEffect, useReducer } from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 import { reducer } from './store/reducer';
-const DashboardContext = createContext();
+const DashboardContext = React.createContext();
 
 export function useDashboard() {
   return useContext(DashboardContext);

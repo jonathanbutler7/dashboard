@@ -3,11 +3,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import style from './Select.module.scss';
 import { useDashboard } from '../context';
-import { useStyles } from '../helpers/helpers';
+import { useStyles } from '../helpers/styles';
 
 function SelectMenu({ inEditView, id }) {
-  const { setSelect, messages, setMessages } = useDashboard();
+  const { setSelect, dispatch } = useDashboard();
   let options;
   const levelsAll = ['view all', 'warn', 'error', 'status'];
   const levels = ['warn', 'error', 'status'];
@@ -20,7 +21,7 @@ function SelectMenu({ inEditView, id }) {
     options = levelsAll;
   }
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     if (!inEditView) {
       setSelect(event.target.value);
     }
@@ -31,22 +32,14 @@ function SelectMenu({ inEditView, id }) {
   };
 
   function changeLevel(level) {
-    const newMsgs = messages.map((msg) =>
-      id === msg.id
-        ? {
-            ...msg,
-            level: level,
-          }
-        : msg
-    );
-    setMessages(newMsgs);
+    dispatch({ type: 'change-level', payload: { id: id, level: level } });
   }
 
   return (
     <FormControl variant='outlined' className={classes.formControl}>
       <InputLabel
         id='demo-simple-select-outlined-label'
-        style={{ color: '#E0E0E0' }}
+        className={style.label}
       >
         Levels
       </InputLabel>
@@ -56,7 +49,7 @@ function SelectMenu({ inEditView, id }) {
         value={''}
         onChange={handleChange}
         label='Levels'
-        style={{ color: '#E0E0E0' }}
+        className={style.label}
       >
         {options.map((level, key) => (
           <MenuItem key={key} value={level}>

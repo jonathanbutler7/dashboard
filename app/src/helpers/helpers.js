@@ -1,12 +1,9 @@
-import { makeStyles } from '@material-ui/core/styles';
+export function pickAvatarColor(level) {
+  if (level === 'error') return 'secondary';
+  if (level === 'warn') return 'primary';
+  if (level === 'status') return 'default';
+}
 
-export const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
+export function getAvatar(level) {
+  return level.charAt(0).toUpperCase();
+}

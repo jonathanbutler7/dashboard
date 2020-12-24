@@ -1,6 +1,5 @@
 export function reducer(state, action) {
   let newState;
-  // console.log(state);
   switch (action.type) {
     case 'add-new-message':
       newState = [...state, action.payload];
@@ -10,8 +9,18 @@ export function reducer(state, action) {
       return newState;
     case 'change-text':
       newState = state.map((msg) =>
-        action.payload.timestamp === msg.timestamp
+        action.payload.id === msg.id
           ? { ...msg, message: action.payload.text }
+          : msg
+      );
+      return newState;
+    case 'change-level':
+      newState = state.map((msg) =>
+        action.payload.id === msg.id
+          ? {
+              ...msg,
+              level: action.payload.level,
+            }
           : msg
       );
       return newState;

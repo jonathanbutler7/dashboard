@@ -4,88 +4,48 @@ import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
 import Select from './Select';
+import { pickAvatarColor, getAvatar } from '../helpers/helpers';
 import { useDashboard } from '../context';
 
 function EditMessage({ msg }) {
-  const { messages, setMessages, setIsRunning } = useDashboard();
   let { timestamp, level, id, message, confirm } = msg;
   const [text, setText] = useState(message);
+  const { setIsRunning, dispatch } = useDashboard();
   
-  function pickAvatarColor(level) {
-    if (level === 'error') return 'secondary';
-    if (level === 'warn') return 'primary';
-    if (level === 'status') return 'default';
-  }
-  let avatar = level.charAt(0).toUpperCase();
-
-  function changeHandler(e, type) {
-    switch (type) {
-      case 'text':
-        setText(e.target.value);
-        break;
-      default:
-        break;
-    }
-  }
-
   function setNewMsg() {
-    const newMsgs = messages.map((msg) =>
-      id === msg.id
-        ? {
-            ...msg,
-            message: text,
-            edit: false,
-          }
-        : msg
-    );
-    setMessages(newMsgs);
-    setIsRunning(true);
-  }
-
-  function closeEditWindow() {
-    const newMsgs = messages.map((msg) =>
-      id === msg.id
-        ? {
-            ...msg,
-            edit: false,
-          }
-        : msg
-    );
-    setMessages(newMsgs);
+    dispatch({ type: 'change-text', payload: { id: id, text: text } });
+    dispatch({ type: 'toggle-edit', payload: id });
     setIsRunning(true);
   }
 
   return (
-    <>
-      <div className={style.editMessage} id={id}>
-        <h3>Edit message:</h3>
-        <p>
-          <small>{timestamp}</small>
-        </p>
-        <Chip
-          color={pickAvatarColor(level)}
-          label={level}
-          avatar={<Avatar>{avatar}</Avatar>}
-        />
-        <Select inEditView={true} id={id} />
-        <br />
-        <textarea
-          name=''
-          id=''
-          cols='100'
-          rows='3'
-          defaultValue={text}
-          onChange={(e) => changeHandler(e, 'text')}
-        ></textarea>
-        <MessageButtons
-          confirm={confirm}
-          id={id}
-          editMode={true}
-          setNewMsg={setNewMsg}
-          closeEditWindow={closeEditWindow}
-        />
-      </div>
-    </>
+    <div className={style.editMessage} id={id}>
+      <h3>Edit message:</h3>
+      <p>
+        <small>{timestamp}</small>
+      </p>
+      <Chip
+        color={pickAvatarColor(level)}
+        label={level}
+        avatar={<Avatar>{getAvatar(level)}</Avatar>}
+      />
+      <Select inEditView={true} id={id} />
+      <br />
+      <textarea
+        name=''
+        id=''
+        cols='100'
+        rows='3'
+        defaultValue={text}
+        onChange={(e) => setText(e.target.value)}
+      ></textarea>
+      <MessageButtons
+        confirm={confirm}
+        id={id}
+        editMode={true}
+        setNewMsg={setNewMsg}
+      />
+    </div>
   );
 }
 

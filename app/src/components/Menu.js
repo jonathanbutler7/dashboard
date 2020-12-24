@@ -20,7 +20,7 @@ function Menu() {
     }
   }, [state]);
 
-  function clearAll() {
+  function deleteAll() {
     dispatch({ type: 'delete-all' });
   }
 
@@ -40,7 +40,7 @@ function Menu() {
         {isRunning ? 'Pause' : 'Start'}
       </Button>
       <Button
-        onClick={(e) => clearAll()}
+        onClick={(e) => deleteAll()}
         variant='contained'
         startIcon={<DeleteIcon />}
         style={{ background: '#AA647B' }}
