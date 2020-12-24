@@ -8,23 +8,21 @@ import { useDashboard } from '../context';
 import Chart from './Chart';
 
 function Menu() {
-  const {
-    messages,
-    setIsRunning,
-    isRunning,
-    clearAll,
-    filteredMessages,
-  } = useDashboard();
+  const { setIsRunning, isRunning, state, dispatch } = useDashboard();
   const [plural, setPlural] = useState('messages');
 
   useEffect(() => {
-    if (messages.length === 1) {
+    if (state.length === 1) {
       setPlural('message');
     }
-    if (messages.length !== 1) {
+    if (state.length !== 1) {
       setPlural('messages');
     }
-  }, [messages]);
+  }, [state]);
+
+  function clearAll() {
+    dispatch({ type: 'delete-all' });
+  }
 
   return (
     <div className={style.main}>
@@ -32,7 +30,7 @@ function Menu() {
       <PlayPauseIcons isRunning={isRunning} />
       <Chart />
       <p>
-        Displaying {filteredMessages.length} {plural}
+        Displaying {state.length} {plural}
       </p>
       <Button
         onClick={(e) => setIsRunning(!isRunning)}

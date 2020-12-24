@@ -3,13 +3,13 @@ import { PieChart } from 'react-minimal-pie-chart';
 import { useDashboard } from '../context';
 
 function Chart() {
-  const { messages } = useDashboard();
-  const warn = messages.filter((msg) => msg.level === 'warn');
-  const error = messages.filter((msg) => msg.level === 'error');
-  const status = messages.filter((msg) => msg.level === 'status');
-  const wPercent = warn.length / messages.length || 0;
-  const ePercent = error.length / messages.length || 0;
-  const sPercent = status.length / messages.length || 0;
+  const { state } = useDashboard();
+  const warn = state.filter((msg) => msg.level === 'warn');
+  const error = state.filter((msg) => msg.level === 'error');
+  const status = state.filter((msg) => msg.level === 'status');
+  const wPercent = warn.length / state.length || 0;
+  const ePercent = error.length / state.length || 0;
+  const sPercent = status.length / state.length || 0;
 
   return (
     <PieChart

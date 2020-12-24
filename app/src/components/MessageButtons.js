@@ -5,27 +5,29 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDashboard } from '../context';
 
-function MessageButtons({ id, confirm, editMode, setNewMsg, closeEditWindow }) {
+function MessageButtons({ id, confirm, editMode, setNewMsg }) {
   const [dialogueOpen, setDialogueOpen] = useState(false);
-  const { messages, setIsRunning, setMessages } = useDashboard();
+  const {
+    messages,
+    setIsRunning,
+    isRunning,
+    setMessages,
+    dispatch,
+  } = useDashboard();
 
   function firstButtonClicked(id) {
-    if (editMode) {
-      closeEditWindow();
-    } else {
-      editPost(id);
-    }
+    dispatch({ type: 'toggle-edit', payload: id });
+    setIsRunning(!isRunning);
   }
 
   function secondButtonClicked(id) {
     if (editMode) {
       setNewMsg();
     } else {
-      openDeleteConfirmation(id);
+      setIsRunning(!isRunning);
+      dispatch({ type: 'toggle-delete-confirmation', payload: id });
     }
   }
-
-
 
   function editPost(id) {
     setIsRunning(false);

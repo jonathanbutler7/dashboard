@@ -1,6 +1,13 @@
-import React, { useContext, useState, createContext, useEffect } from 'react';
+import React, {
+  useContext,
+  useState,
+  createContext,
+  useEffect,
+  useReducer,
+} from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
+import { reducer } from './store/reducer';
 const DashboardContext = createContext();
 
 export function useDashboard() {
@@ -11,13 +18,14 @@ export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
   const [messages, setMessages] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState(messages);
+  const [state, dispatch] = useReducer(reducer, messages);
   const [snackbar, setSnackbar] = useState('');
   const [select, setSelect] = useState('');
 
   useInterval(
     () => {
       const newMsg = randomGenerator();
-      const newSet = [...messages, newMsg];
+      const newSet = [...messages, { ...newMsg, edit: false, confirm: false }];
       setMessages(newSet);
     },
     isRunning ? 2000 : null
@@ -52,6 +60,8 @@ export function DashboardProvider({ children }) {
     setSelect,
     filteredMessages,
     setFilteredMessages,
+    state,
+    dispatch,
   };
 
   return (
