@@ -13,7 +13,6 @@ export function DashboardProvider({ children }) {
   const [filteredMessages, setFilteredMessages] = useState(messages);
   const [snackbar, setSnackbar] = useState('');
   const [select, setSelect] = useState('');
-  const [id, setId] = useState(null);
 
   useInterval(
     () => {
@@ -49,8 +48,6 @@ export function DashboardProvider({ children }) {
     clearAll,
     snackbar,
     setSnackbar,
-    id,
-    setId,
     select,
     setSelect,
     filteredMessages,

@@ -10,6 +10,7 @@ function EditMessage({ msg }) {
   const { messages, setMessages, setIsRunning } = useDashboard();
   let { timestamp, level, id, message, confirm } = msg;
   const [text, setText] = useState(message);
+  
   function pickAvatarColor(level) {
     if (level === 'error') return 'secondary';
     if (level === 'warn') return 'primary';

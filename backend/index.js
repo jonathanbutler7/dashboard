@@ -1,23 +1,22 @@
-// const chance = require('chance');
-// const uuid = require('uuid').v4;
+const chance = require('chance');
+const uuid = require('uuid').v4;
 
-// const levels = ['warn', 'error', 'status'];
+const levels = ['warn', 'error', 'status'];
 
-// const randomLevel = () => {
-//   return levels[Math.floor(Math.random() * 3)];
-// };
+const randomLevel = () => {
+  return levels[Math.floor(Math.random() * 3)];
+};
 
-// const randomGenerator = () => {
-//   return {
-//     level: randomLevel(),
-//     message: chance().sentence({ words: 5 }),
-//     timestamp: new Date(Date.now()).toUTCString(),
-//     id: uuid(),
-//   };
-// };
+const randomGenerator = () => {
+  return {
+    level: randomLevel(),
+    message: chance().sentence({ words: 5 }),
+    timestamp: new Date(Date.now()).toUTCString(),
+    id: uuid(),
+  };
+};
 
-// setInterval(() => {
-//   console.log(randomGenerator());
-// }, 2000);
+setInterval(() => {
+  console.log(randomGenerator());
+}, 2000);
 
-// module.exports = { randomGenerator };
