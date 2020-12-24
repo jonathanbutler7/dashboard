@@ -11,10 +11,10 @@ export function useDashboard() {
 export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
   const [messages, setMessages] = useState([]);
-  const [filteredMessages, setFilteredMessages] = useState(messages);
   const [state, dispatch] = useReducer(reducer, messages);
   const [snackbar, setSnackbar] = useState('');
   const [select, setSelect] = useState('');
+  const [filteredMessages, setFilteredMessages] = useState(messages);
 
   useInterval(
     () => {
@@ -44,7 +44,6 @@ export function DashboardProvider({ children }) {
 
   const value = {
     messages,
-    setMessages,
     isRunning,
     setIsRunning,
     clearAll,
@@ -52,8 +51,6 @@ export function DashboardProvider({ children }) {
     setSnackbar,
     select,
     setSelect,
-    filteredMessages,
-    setFilteredMessages,
     state,
     dispatch,
   };
