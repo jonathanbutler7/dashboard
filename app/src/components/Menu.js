@@ -26,8 +26,10 @@ function Menu() {
 
   return (
     <div className={style.main}>
-      <h3>Status: {isRunning ? 'Running' : 'Paused'}</h3>
-      <PlayPauseIcons isRunning={isRunning} />
+      <div className={style.status}>
+        <h3>Status: {isRunning ? 'Running' : 'Paused'}</h3>
+        <PlayPauseIcons />
+      </div>
       <Chart />
       <p>
         Displaying {state.length} {plural}

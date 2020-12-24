@@ -2,3 +2,15 @@
     background: #333333;
     padding: 1rem;
 }
+
+.status {
+    display: flex;
+    align-items: center;
+
+    h3 {
+
+        display: inline-block;
+        margin-right: 2rem;
+    }
+
+}
