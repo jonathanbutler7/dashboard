@@ -3,15 +3,8 @@ import Button from '@material-ui/core/Button';
 import style from './Dialogue.module.scss';
 import { useDashboard } from '../context';
 
-function Dialogue({ open, id }) {
-  const {
-    messages,
-    setMessages,
-    setSnackbar,
-    setIsRunning,
-    isRunning,
-    dispatch,
-  } = useDashboard();
+function Dialogue({ id }) {
+  const { setSnackbar, setIsRunning, isRunning, dispatch } = useDashboard();
 
   function closeDialogue(id) {
     dispatch({ type: 'toggle-delete-confirmation', payload: id });
@@ -19,8 +12,6 @@ function Dialogue({ open, id }) {
   }
 
   function deleteMessage(id) {
-    // const newMsgs = messages.filter((msg) => msg.id !== id);
-    // setMessages(newMsgs);
     dispatch({ type: 'delete-message', payload: id });
     setIsRunning(!isRunning);
     setSnackbar('Successfully deleted');
@@ -28,7 +19,7 @@ function Dialogue({ open, id }) {
   }
 
   return (
-    <div className={style.main} open={open}>
+    <div className={style.main}>
       <div id='confirmation-dialog-title'>Are you sure you want to delete?</div>
       <div>
         <Button autoFocus onClick={() => closeDialogue(id)} color='primary'>

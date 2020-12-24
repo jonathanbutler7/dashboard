@@ -10,12 +10,12 @@ function Messages() {
   useEffect(() => {
     if (messages.length > 0) {
       dispatch({
-        type: 'addnewmessage',
+        type: 'add-new-message',
         payload: messages[messages.length - 1],
       });
     }
   }, [messages, dispatch]);
-  
+
   return (
     <div className={style.main}>
       {state.map((msg, key) => (

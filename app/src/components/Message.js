@@ -4,7 +4,6 @@ import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
 
-
 function Message({ msg }) {
   function pickAvatarColor(level) {
     if (level === 'error') return 'secondary';
