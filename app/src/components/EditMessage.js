@@ -4,14 +4,18 @@ import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
 import Select from './Select';
-import { pickAvatarColor, getAvatar } from '../helpers/helpers';
+import {
+  pickAvatarColor,
+  getAvatar,
+  getReadableTime,
+} from '../helpers/helpers';
 import { useDashboard } from '../context';
 
 function EditMessage({ msg }) {
   let { timestamp, level, id, message, confirm } = msg;
   const [text, setText] = useState(message);
   const { setIsRunning, dispatch } = useDashboard();
-  
+
   function setNewMsg() {
     dispatch({ type: 'change-text', payload: { id: id, text: text } });
     dispatch({ type: 'toggle-edit', payload: id });
@@ -22,14 +26,14 @@ function EditMessage({ msg }) {
     <div className={style.editMessage} id={id}>
       <h3>Edit message:</h3>
       <p>
-        <small>{timestamp}</small>
+        <small>{getReadableTime(timestamp)}</small>
       </p>
       <Chip
         color={pickAvatarColor(level)}
         label={level}
         avatar={<Avatar>{getAvatar(level)}</Avatar>}
       />
-      <Select inEditView={true} id={id} />
+      <Select inEditView={true} id={id} prevLevel={level} />
       <br />
       <textarea
         name=''

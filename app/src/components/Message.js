@@ -3,7 +3,11 @@ import style from './Message.module.scss';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
-import { pickAvatarColor, getAvatar } from '../helpers/helpers';
+import {
+  pickAvatarColor,
+  getAvatar,
+  getReadableTime,
+} from '../helpers/helpers';
 
 function Message({ msg }) {
   let { timestamp, level, id, message, confirm } = msg;
@@ -11,7 +15,7 @@ function Message({ msg }) {
   return (
     <div className={style.message} id={id}>
       <p>
-        <small>{timestamp}</small>
+        <small>{getReadableTime(timestamp)}</small>
       </p>
       <Chip
         color={pickAvatarColor(level)}

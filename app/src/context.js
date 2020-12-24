@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect, useReducer } from 'react';
+import React, { useContext, useState, createContext, useReducer } from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 import { reducer } from './store/reducer';
-const DashboardContext = React.createContext();
+const DashboardContext = createContext();
 
 export function useDashboard() {
   return useContext(DashboardContext);
@@ -12,9 +12,9 @@ export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
   const [messages, setMessages] = useState([]);
   const [state, dispatch] = useReducer(reducer, messages);
+  const [filteredMessages, setFilteredMessages] = useState(state);
   const [snackbar, setSnackbar] = useState('');
   const [select, setSelect] = useState('');
-  const [filteredMessages, setFilteredMessages] = useState(messages);
 
   useInterval(
     () => {
@@ -24,18 +24,6 @@ export function DashboardProvider({ children }) {
     },
     isRunning ? 2000 : null
   );
-
-  useEffect(() => {
-    if (select === 'view all') {
-      setFilteredMessages(messages);
-    } else if (select) {
-      setFilteredMessages(
-        messages.filter((message) => message.level === select)
-      );
-    } else {
-      setFilteredMessages(messages);
-    }
-  }, [messages, select]);
 
   function clearAll() {
     setMessages([]);
@@ -53,6 +41,8 @@ export function DashboardProvider({ children }) {
     setSelect,
     state,
     dispatch,
+    filteredMessages,
+    setFilteredMessages,
   };
 
   return (
