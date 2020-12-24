@@ -8,7 +8,7 @@ import { useDashboard } from '../context';
 import { useStyles } from '../helpers/styles';
 
 function SelectMenu({ inEditView, id, prevLevel }) {
-  const { select, setSelect, dispatch } = useDashboard();
+  const { select, dispatch, setSnackbar } = useDashboard();
   const [it, setIt] = useState('');
   let options;
   let level;
@@ -28,6 +28,7 @@ function SelectMenu({ inEditView, id, prevLevel }) {
     let level = event.target.value;
     console.log(level);
     setIt(level);
+    setSnackbar('Successfully changed level');
     // if (!inEditView) {
     //   setSelect(level);
     //   dispatch({ type: 'filter', payload: level });

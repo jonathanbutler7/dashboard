@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useDashboard } from '../context';
 
 function MessageButtons({ id, confirm, editMode, setNewMsg }) {
-  const { setIsRunning, isRunning, dispatch } = useDashboard();
+  const { setIsRunning, isRunning, dispatch, setSnackbar } = useDashboard();
 
   function firstButtonClicked(id) {
     dispatch({ type: 'toggle-edit', payload: id });
@@ -19,6 +19,7 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
       dispatch({ type: 'toggle-delete-confirmation', payload: id });
     } else {
       setNewMsg();
+      setSnackbar('Successfully edited message');
     }
   }
 

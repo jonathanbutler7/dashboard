@@ -1,31 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import style from './Dialogue.module.scss';
 import { useDashboard } from '../context';
 
-function Dialogue({ id }) {
+function Dialogue({ id, inMenu, setShowDeleteConfirmation }) {
   const { setSnackbar, setIsRunning, isRunning, dispatch } = useDashboard();
+  const [deleteMessage, setDeleteMessage] = useState('');
+
+  useEffect(() => {
+    if (inMenu) {
+      let msg = 'Are you sure you want to delete all? This cannot be undone.';
+      setDeleteMessage(msg);
+    }
+    if (!inMenu) {
+      let msg = 'Are you sure you want to delete this message?';
+      setDeleteMessage(msg);
+    }
+  }, [inMenu]);
 
   function closeDialogue(id) {
-    dispatch({ type: 'toggle-delete-confirmation', payload: id });
-    setIsRunning(!isRunning);
+    if (inMenu) {
+      setShowDeleteConfirmation(false);
+    }
+    if (!inMenu) {
+      dispatch({ type: 'toggle-delete-confirmation', payload: id });
+      setIsRunning(!isRunning);
+    }
   }
 
-  function deleteMessage(id) {
-    dispatch({ type: 'delete-message', payload: id });
-    setIsRunning(!isRunning);
-    setSnackbar('Successfully deleted');
-    setIsRunning(true);
+  function deleteSelected(id) {
+    if (inMenu) {
+      dispatch({ type: 'delete-all' });
+      setSnackbar('Successfully deleted all');
+      setShowDeleteConfirmation(false);
+    }
+    if (!inMenu) {
+      dispatch({ type: 'delete-message', payload: id });
+      setIsRunning(!isRunning);
+      setSnackbar('Successfully deleted');
+      setIsRunning(true);
+    }
   }
 
   return (
-    <div className={style.main}>
-      <div id='confirmation-dialog-title'>Are you sure you want to delete?</div>
+    <div className={inMenu ? style.inMenu : style.main}>
+      <div id='confirmation-dialog-title'>{deleteMessage}</div>
       <div>
         <Button autoFocus onClick={() => closeDialogue(id)} color='primary'>
           Cancel
         </Button>
-        <Button onClick={() => deleteMessage(id)} color='primary'>
+        <Button onClick={() => deleteSelected(id)} color='primary'>
           Delete
         </Button>
       </div>

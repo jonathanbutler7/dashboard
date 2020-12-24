@@ -25,16 +25,10 @@ export function DashboardProvider({ children }) {
     isRunning ? 2000 : null
   );
 
-  function clearAll() {
-    setMessages([]);
-    setSnackbar('Deleted all messages');
-  }
-
   const value = {
     messages,
     isRunning,
     setIsRunning,
-    clearAll,
     snackbar,
     setSnackbar,
     select,
