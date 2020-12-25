@@ -9,7 +9,14 @@ import { useDashboard } from '../context';
 import Chart from './Chart';
 
 function Menu() {
-  const { setIsRunning, isRunning, state, setSnackbar } = useDashboard();
+  const {
+    setIsRunning,
+    isRunning,
+    state,
+    setSnackbar,
+    select,
+    pickem,
+  } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
@@ -42,7 +49,8 @@ function Menu() {
       </div>
       <Chart />
       <p>
-        Displaying {state.length} {plural}
+        Displaying {pickem.length}{' '}
+        {select !== 'view all' && `of ${state.length} total`} {plural}
       </p>
       <Button
         onClick={(e) => toggleIsRunning()}

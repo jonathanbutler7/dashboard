@@ -30,18 +30,14 @@ export function DashboardProvider({ children }) {
     },
     isRunning ? 2000 : null
   );
-
-  useEffect(() => {
-    if (select === 'view all') {
-      setFilteredMessages(messages);
-    } else if (select) {
-      setFilteredMessages(
-        messages.filter((message) => message.level === select)
-      );
-    } else {
-      setFilteredMessages(messages);
-    }
-  }, [messages, select]);
+  
+  let pickem = state;
+  if (select !== 'view all') {
+    pickem = messages.filter((message) => message.level === select);
+  }
+  if (select === 'view all') {
+    pickem = messages;
+  }
 
   const value = {
     messages,
@@ -55,6 +51,7 @@ export function DashboardProvider({ children }) {
     dispatch,
     filteredMessages,
     setFilteredMessages,
+    pickem
   };
 
   return (

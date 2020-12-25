@@ -8,17 +8,15 @@ import { useDashboard } from '../context';
 import { useStyles } from '../helpers/styles';
 
 function SelectMenu({ inEditView, id, prevLevel }) {
-  const { select, dispatch, setSnackbar, setSelect } = useDashboard();
+  const { setSnackbar, setSelect } = useDashboard();
   const [it, setIt] = useState('');
   let options;
-  let level;
   const levelsAll = ['view all', 'warn', 'error', 'status'];
   const levels = ['warn', 'error', 'status'];
   const classes = useStyles();
 
   if (inEditView) {
     options = levels;
-    level = select;
   }
   if (!inEditView) {
     options = levelsAll;
@@ -27,20 +25,8 @@ function SelectMenu({ inEditView, id, prevLevel }) {
   function handleChange(event) {
     let level = event.target.value;
     setIt(level);
-    setSnackbar('Successfully changed level');
-    setSelect(level)
-    // if (!inEditView) {
-    //   setSelect(level);
-    //   dispatch({ type: 'filter', payload: level });
-    // }
-    // if (inEditView) {
-    //   setSelect(level);
-    //   changeLevel(level);
-    // }
-  }
-
-  function changeLevel(level) {
-    dispatch({ type: 'change-level', payload: { id: id, level: level } });
+    setSnackbar(`Successfully changed level to ${level}`);
+    setSelect(level);
   }
 
   return (
