@@ -42,7 +42,9 @@ export function reducer(state, action) {
       return newState;
     case 'toggle-edit':
       newState = state.map((msg) =>
-        action.payload === msg.id ? { ...msg, edit: !msg.edit } : msg
+        action.payload === msg.id
+          ? { ...msg, edit: !msg.edit }
+          : { ...msg, edit: false }
       );
       return newState;
     default:

@@ -10,9 +10,14 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
 
   function firstButtonClicked(id) {
     dispatch({ type: 'toggle-edit', payload: id });
-    setIsRunning(!isRunning);
+    if (!editMode) {
+      setIsRunning(false);
+    }
+    if (editMode) {
+      setIsRunning(true);
+    }
   }
-
+  
   function secondButtonClicked(id) {
     if (!editMode) {
       setIsRunning(!isRunning);

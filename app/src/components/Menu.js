@@ -57,7 +57,7 @@ function Menu() {
         startIcon={<DeleteIcon />}
         style={{ background: '#AA647B' }}
       >
-        Delete all messages
+        Delete all
       </Button>
       <br />
       <p>Show only:</p>
