@@ -10,12 +10,14 @@
 .right {
     flex: 1;
 }
+
 .right {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
+
 .status {
     display: flex;
     align-items: center;
@@ -27,8 +29,6 @@
     }
 
 }
-
-//below     650 px, .main {flex-direction: column;}
 
 @media only screen and (max-width: 650px) {
 
