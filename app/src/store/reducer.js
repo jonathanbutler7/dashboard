@@ -14,9 +14,6 @@ export function reducer(state, action) {
           : msg
       );
       return newState;
-    case 'filter':
-      newState = state.filter((msg) => msg.level === action.payload);
-      return newState;
     case 'change-level':
       newState = state.map((msg) =>
         action.payload.id === msg.id

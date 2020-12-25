@@ -5,7 +5,14 @@ import EditMessage from './EditMessage';
 import { useDashboard } from '../context';
 
 function Messages() {
-  const { state, dispatch, messages } = useDashboard();
+  const {
+    state,
+    dispatch,
+    messages,
+    select,
+    filteredMessages,
+  } = useDashboard();
+  let pickem = state;
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -16,9 +23,17 @@ function Messages() {
     }
   }, [messages, dispatch]);
 
+  if (select !== 'view all') {
+    pickem = messages.filter((message) => message.level === select);
+  }
+  if (select === 'view all') {
+    pickem = messages;
+  }
+
+  console.log(messages)
   return (
     <div className={style.main}>
-      {state.map((msg, key) => (
+      {pickem.map((msg, key) => (
         <div key={key}>
           {msg.edit ? <EditMessage msg={msg} /> : <Message msg={msg} />}
         </div>
