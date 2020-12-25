@@ -26,17 +26,19 @@ function EditMessage({ msg }) {
     <div className={style.editMessage} id={id}>
       <h3>Edit details:</h3>
       <p>
-        <small>{getReadableTime(timestamp)}</small>
+        <small>Created: {getReadableTime(timestamp)}</small>
       </p>
       <Chip
         color={pickAvatarColor(level)}
         label={level}
         avatar={<Avatar>{getAvatar(level)}</Avatar>}
       />
+      <br />
       <h4>Edit level:</h4>
       <Select inEditView={true} id={id} prevLevel={level} />
       <br />
-      <h5>Edit message:</h5>
+      <h4>Edit message:</h4>
+      <br />
       <textarea
         name=''
         id=''
