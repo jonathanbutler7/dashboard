@@ -5,7 +5,7 @@ import EditMessage from './EditMessage';
 import { useDashboard } from '../context';
 
 function Messages() {
-  const { dispatch, messages, state, select, pickem } = useDashboard();
+  const { dispatch, messages, pickem } = useDashboard();
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -15,7 +15,6 @@ function Messages() {
       });
     }
   }, [messages, dispatch]);
-  
 
   return (
     <div className={style.main}>

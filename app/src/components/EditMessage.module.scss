@@ -4,6 +4,9 @@
     background: #333333;
     filter: drop-shadow(0 0 0.75rem #c7d2db);
     border-radius: .2rem;
+    > h4 {
+        display: inline-block;
+    }
 }
 
 textarea {

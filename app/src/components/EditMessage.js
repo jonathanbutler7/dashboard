@@ -36,7 +36,7 @@ function EditMessage({ msg }) {
       <h4>Edit level:</h4>
       <Select inEditView={true} id={id} prevLevel={level} />
       <br />
-      <h4>Edit message:</h4>
+      <h5>Edit message:</h5>
       <textarea
         name=''
         id=''
