@@ -16,6 +16,10 @@ function EditMessage({ msg }) {
   const [text, setText] = useState(message);
   const { setIsRunning, dispatch } = useDashboard();
 
+  function submit() {
+    setNewMsg();
+  }
+
   function setNewMsg() {
     dispatch({ type: 'change-text', payload: { id: id, text: text } });
     dispatch({ type: 'toggle-edit', payload: id });
@@ -23,7 +27,7 @@ function EditMessage({ msg }) {
   }
 
   return (
-    <div className={style.editMessage} id={id}>
+    <form className={style.editMessage} id={id} onSubmit={submit}>
       <h3>Edit details:</h3>
       <p>
         <small>Created: {getReadableTime(timestamp)}</small>
@@ -53,7 +57,7 @@ function EditMessage({ msg }) {
         editMode={true}
         setNewMsg={setNewMsg}
       />
-    </div>
+    </form>
   );
 }
 

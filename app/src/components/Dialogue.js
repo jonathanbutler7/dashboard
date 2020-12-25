@@ -44,12 +44,22 @@ function Dialogue({ id, inMenu, setShowDeleteConfirmation }) {
 
   return (
     <div className={inMenu ? style.inMenu : style.main}>
-      <div id='confirmation-dialog-title'>{deleteMessage}</div>
+      <h5 id='confirmation-dialog-title'>{deleteMessage}</h5>
       <div>
-        <Button autoFocus onClick={() => closeDialogue(id)} color='primary'>
+        <Button
+          autoFocus
+          onClick={() => closeDialogue(id)}
+          variant='contained'
+          style={{ marginRight: '1rem' }}
+        >
           Cancel
         </Button>
-        <Button onClick={() => deleteSelected(id)} color='primary'>
+        <Button
+          onClick={() => deleteSelected(id)}
+          color='primary'
+          variant='contained'
+          style={{ background: '#AA647B' }}
+        >
           Delete
         </Button>
       </div>

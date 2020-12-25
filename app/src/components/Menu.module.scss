@@ -2,8 +2,20 @@
     background: #333333;
     padding: 1rem;
     position: relative;
+    display: flex;
+    flex-direction: row;
 }
 
+.left,
+.right {
+    flex: 1;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
 .status {
     display: flex;
     align-items: center;

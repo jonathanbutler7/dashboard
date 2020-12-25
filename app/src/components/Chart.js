@@ -13,7 +13,7 @@ function Chart() {
 
   return (
     <PieChart
-      style={{ width: '15%' }}
+      style={{ maxHeight: '10rem' }}
       data={[
         { title: 'warn', value: wPercent, color: '#3f51b5' },
         { title: 'error', value: ePercent, color: '#f50057' },

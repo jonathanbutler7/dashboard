@@ -37,39 +37,43 @@ function Menu() {
 
   return (
     <div className={style.main}>
-      {showDeleteConfirmation && (
-        <Dialogue
-          inMenu={true}
-          setShowDeleteConfirmation={setShowDeleteConfirmation}
-        />
-      )}
-      <div className={style.status}>
-        <h3>Status: {isRunning ? 'Running' : 'Paused'}</h3>
-        <PlayPauseIcons />
+      <div className={style.left}>
+        {showDeleteConfirmation && (
+          <Dialogue
+            inMenu={true}
+            setShowDeleteConfirmation={setShowDeleteConfirmation}
+          />
+        )}
+        <div className={style.status}>
+          <h2>Status: {isRunning ? 'Running' : 'Paused'}</h2>
+          <PlayPauseIcons />
+        </div>
+        <Button
+          onClick={(e) => toggleIsRunning()}
+          variant='contained'
+          style={{ marginRight: '1rem' }}
+        >
+          {isRunning ? 'Pause' : 'Start'}
+        </Button>
+        <Button
+          onClick={(e) => setShowDeleteConfirmation(true)}
+          variant='contained'
+          startIcon={<DeleteIcon />}
+          style={{ background: '#AA647B' }}
+        >
+          Delete all
+        </Button>
+        <br />
+        <p>Show only:</p>
+        <Select />
       </div>
-      <Chart />
-      <p>
-        Displaying {pickem.length}{' '}
-        {select !== 'view all' && `of ${state.length} total`} {plural}
-      </p>
-      <Button
-        onClick={(e) => toggleIsRunning()}
-        variant='contained'
-        style={{ marginRight: '1rem' }}
-      >
-        {isRunning ? 'Pause' : 'Start'}
-      </Button>
-      <Button
-        onClick={(e) => setShowDeleteConfirmation(true)}
-        variant='contained'
-        startIcon={<DeleteIcon />}
-        style={{ background: '#AA647B' }}
-      >
-        Delete all
-      </Button>
-      <br />
-      <p>Show only:</p>
-      <Select />
+      <div className={style.right}>
+        <Chart />
+        <p>
+          Displaying {pickem.length}{' '}
+          {select !== 'view all' && `of ${state.length} total`} {plural}
+        </p>
+      </div>
     </div>
   );
 }
