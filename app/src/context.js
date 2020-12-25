@@ -19,12 +19,12 @@ export function DashboardProvider({ children }) {
   useInterval(
     () => {
       const newMsg = randomGenerator();
-      const newSet = [...messages, { ...newMsg, edit: false, confirm: false }];
-      setMessages(newSet);
+      const newMsgs = [...messages, { ...newMsg, edit: false, confirm: false }];
+      setMessages(newMsgs);
     },
     isRunning ? 2000 : null
   );
-
+  console.log(state);
   const value = {
     messages,
     isRunning,

@@ -17,12 +17,13 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
       setIsRunning(true);
     }
   }
-  
+
   function secondButtonClicked(id) {
     if (!editMode) {
       setIsRunning(!isRunning);
       dispatch({ type: 'toggle-delete-confirmation', payload: id });
-    } else {
+    }
+    if (editMode) {
       setNewMsg();
       setSnackbar('Successfully edited message');
     }
