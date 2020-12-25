@@ -15,7 +15,7 @@ function Menu() {
     state,
     setSnackbar,
     select,
-    pickem,
+    messages1,
   } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -49,7 +49,7 @@ function Menu() {
       </div>
       <Chart />
       <p>
-        Displaying {pickem.length}{' '}
+        Displaying {messages1.length}{' '}
         {select !== 'view all' && `of ${state.length} total`} {plural}
       </p>
       <Button

@@ -1,4 +1,5 @@
 export function reducer(state, action) {
+  console.log(state)
   let newState;
   switch (action.type) {
     case 'add-new-message':

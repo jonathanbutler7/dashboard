@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  createContext,
-  useReducer,
-  useEffect,
-} from 'react';
+import React, { useContext, useState, createContext, useReducer } from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 import { reducer } from './store/reducer';
@@ -16,9 +10,9 @@ export function useDashboard() {
 
 export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
-  const [messages, setMessages] = useState([]);
-  const [state, dispatch] = useReducer(reducer, messages);
-  const [filteredMessages, setFilteredMessages] = useState(state);
+  let [messages, setMessages] = useState([]);
+  let messages1 = messages;
+  let [state, dispatch] = useReducer(reducer, messages1);
   const [snackbar, setSnackbar] = useState('');
   const [select, setSelect] = useState('view all');
 
@@ -30,14 +24,6 @@ export function DashboardProvider({ children }) {
     },
     isRunning ? 2000 : null
   );
-  
-  let pickem = state;
-  if (select !== 'view all') {
-    pickem = messages.filter((message) => message.level === select);
-  }
-  if (select === 'view all') {
-    pickem = messages;
-  }
 
   const value = {
     messages,
@@ -49,9 +35,7 @@ export function DashboardProvider({ children }) {
     setSelect,
     state,
     dispatch,
-    filteredMessages,
-    setFilteredMessages,
-    pickem
+    messages1,
   };
 
   return (
