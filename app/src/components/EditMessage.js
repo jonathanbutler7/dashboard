@@ -20,8 +20,12 @@ function EditMessage({ msg }) {
     setNewMsg();
   }
 
+  function changeText(val) {
+    setText(val);
+    dispatch({ type: 'change-text', payload: { id: id, text: val } });
+  }
+
   function setNewMsg() {
-    dispatch({ type: 'change-text', payload: { id: id, text: text } });
     dispatch({ type: 'toggle-edit', payload: id });
     setIsRunning(true);
   }
@@ -49,7 +53,7 @@ function EditMessage({ msg }) {
         cols='100'
         rows='3'
         defaultValue={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => changeText(e.target.value)}
       ></textarea>
       <MessageButtons
         confirm={confirm}
