@@ -2,6 +2,8 @@ import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import MuiAlert from '@material-ui/lab/Alert';
+
 import { useDashboard } from '../context';
 
 export default function SimpleSnackbar() {
@@ -19,14 +21,18 @@ export default function SimpleSnackbar() {
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
         }}
         open={Boolean(snackbar)}
-        autoHideDuration={3000}
+        autoHideDuration={300000}
         onClose={handleClose}
         message={snackbar}
+        bodyStyle={{ backgroundColor: 'teal', color: 'coral' }}
         action={
           <>
+            <MuiAlert onClose={handleClose} severity='success'>
+              {snackbar}
+            </MuiAlert>
             <IconButton
               size='small'
               aria-label='close'

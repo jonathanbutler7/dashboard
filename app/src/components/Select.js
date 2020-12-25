@@ -34,7 +34,11 @@ function SelectMenu({ inEditView, id, prevLevel }) {
     <FormControl variant='outlined' className={classes.formControl}>
       <InputLabel
         id='demo-simple-select-outlined-label'
-        className={style.label}
+        // className={style.label}
+        className={classes.root}
+        classes={{
+          underline: style.underline,
+        }}
         style={{ color: '#E0E0E0' }}
       >
         Levels
