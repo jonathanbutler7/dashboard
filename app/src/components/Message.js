@@ -11,7 +11,7 @@ import {
 
 function Message({ msg }) {
   let { timestamp, level, id, message, confirm } = msg;
-
+  console.log(msg)
   return (
     <div className={style.message} id={id}>
       <p>
