@@ -34,7 +34,7 @@ function Menu() {
     let message = isRunning ? 'Paused' : 'Started';
     setSnackbar(message);
   }
-
+  console.log(document.body.scrollTop);
   return (
     <div className={style.main}>
       <div className={style.left}>

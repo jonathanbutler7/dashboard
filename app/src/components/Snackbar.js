@@ -24,10 +24,10 @@ export default function SimpleSnackbar() {
           horizontal: 'right',
         }}
         open={Boolean(snackbar)}
-        autoHideDuration={300000}
+        autoHideDuration={4000}
         onClose={handleClose}
         message={snackbar}
-        bodyStyle={{ backgroundColor: 'teal', color: 'coral' }}
+        severity='success'
         action={
           <>
             <MuiAlert onClose={handleClose} severity='success'>
