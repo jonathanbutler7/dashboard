@@ -1,6 +1,6 @@
 # What is this project?
 
-This project was a take home coding challenge: Build a dashboard to display messages from a server.. The requirements were: 
+This project was a take home coding challenge: Build a dashboard to display messages from a server. The requirements were: 
 
 1. Display the messages
 2. Filter messages by `level`
