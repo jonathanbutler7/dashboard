@@ -37,7 +37,7 @@ function Dialogue({ id, inMenu, setShowDeleteConfirmation }) {
     if (!inMenu) {
       dispatch({ type: 'delete-message', payload: id });
       setIsRunning(!isRunning);
-      setSnackbar('Successfully deleted');
+      setSnackbar('Successfully deleted message');
       setIsRunning(true);
     }
   }

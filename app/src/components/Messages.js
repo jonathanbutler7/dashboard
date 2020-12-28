@@ -5,7 +5,7 @@ import EditMessage from './EditMessage';
 import { useDashboard } from '../context';
 
 function Messages() {
-  const { dispatch, messages, pickem } = useDashboard();
+  const { dispatch, messages, msgsInView } = useDashboard();
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -18,7 +18,7 @@ function Messages() {
 
   return (
     <div className={style.main}>
-      {pickem.map((msg, key) => (
+      {msgsInView.map((msg, key) => (
         <div key={key}>
           {msg.edit ? <EditMessage msg={msg} /> : <Message msg={msg} />}
         </div>

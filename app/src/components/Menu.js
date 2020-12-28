@@ -15,7 +15,7 @@ function Menu() {
     state,
     setSnackbar,
     select,
-    pickem,
+    msgsInView,
   } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -34,7 +34,7 @@ function Menu() {
     let message = isRunning ? 'Paused' : 'Started';
     setSnackbar(message);
   }
-  console.log(document.body.scrollTop);
+  
   return (
     <div className={style.main}>
       <div className={style.left}>
@@ -70,7 +70,7 @@ function Menu() {
       <div className={style.right}>
         <Chart />
         <p>
-          Displaying {pickem.length}{' '}
+          Displaying {msgsInView.length}{' '}
           {select !== 'view all' && `of ${state.length} total`} {plural}
         </p>
       </div>

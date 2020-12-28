@@ -15,12 +15,12 @@ export function DashboardProvider({ children }) {
   const [snackbar, setSnackbar] = useState('');
   const [select, setSelect] = useState('view all');
 
-  let pickem = state;
+  let msgsInView = state;
   if (select !== 'view all') {
-    pickem = state.filter((message) => message.level === select);
+    msgsInView = state.filter((message) => message.level === select);
   }
   if (select === 'view all') {
-    pickem = state;
+    msgsInView = state;
   }
 
   useInterval(
@@ -42,7 +42,7 @@ export function DashboardProvider({ children }) {
     setSelect,
     state,
     dispatch,
-    pickem,
+    msgsInView,
   };
 
   return (
