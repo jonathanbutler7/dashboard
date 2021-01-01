@@ -34,7 +34,7 @@ function MiniMenu({ plural }) {
         <Button
           onClick={(e) => setShowDeleteConfirmation(true)}
           variant='contained'
-          style={{ background: '#AA647B', height: '40px' }}
+          style={{ background: '#AA647B', height: '40px', paddingLeft: '1rem' }}
         >
           <DeleteIcon />
         </Button>

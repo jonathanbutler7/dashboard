@@ -9,12 +9,7 @@ import Dialogue from './Dialogue';
 import Chart from './Chart';
 
 function FullMenu({ toggleIsRunning, plural }) {
-  const {
-    isRunning,
-    state,
-    select,
-    msgsInView,
-  } = useDashboard();
+  const { isRunning, state, select, msgsInView } = useDashboard();
 
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   return (
@@ -31,20 +26,17 @@ function FullMenu({ toggleIsRunning, plural }) {
           <PlayPauseIcons />
         </div>
         <Button
-          onClick={(e) => toggleIsRunning()}
-          variant='contained'
-          style={{ marginRight: '1rem' }}
-        >
-          {isRunning ? 'Pause' : 'Start'}
-        </Button>
-        <Button
           onClick={(e) => setShowDeleteConfirmation(true)}
           variant='contained'
           startIcon={<DeleteIcon />}
-          style={{ background: '#AA647B' }}
+          style={{ background: '#AA647B', marginRight: '1rem' }}
         >
           Delete all
         </Button>
+        <Button onClick={(e) => toggleIsRunning()} variant='contained'>
+          {isRunning ? 'Pause' : 'Start'}
+        </Button>
+
         <br />
         <p>Filter:</p>
         <Select />
