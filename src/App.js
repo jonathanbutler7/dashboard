@@ -9,7 +9,6 @@ function App() {
     <DashboardProvider>
       <Snackbar />
       <Header />
-      <Menu />
       <Messages />
     </DashboardProvider>
   );

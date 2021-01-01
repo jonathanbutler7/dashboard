@@ -2,7 +2,7 @@ import React from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import { useDashboard } from '../context';
 
-function Chart() {
+function Chart({ mini }) {
   const { state } = useDashboard();
   const warn = state.filter((msg) => msg.level === 'warn');
   const error = state.filter((msg) => msg.level === 'error');
@@ -13,7 +13,7 @@ function Chart() {
 
   return (
     <PieChart
-      style={{ maxHeight: '10rem' }}
+      style={{ maxHeight: mini ? '3rem' : '10rem' }}
       data={[
         { title: 'warn', value: wPercent, color: '#3f51b5' },
         { title: 'error', value: ePercent, color: '#f50057' },
