@@ -8,15 +8,15 @@ import { useDashboard } from '../context';
 import Dialogue from './Dialogue';
 import Chart from './Chart';
 
-function MiniMenu({ toggleIsRunning, plural }) {
+function MiniMenu({ plural }) {
   const { isRunning, state, select, msgsInView } = useDashboard();
-
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
   return (
     <div
       className={style.main}
       style={{
-        borderBottom: isRunning ? '1px solid #4caf50' : '1px solid #ff9800',
+        borderBottom: isRunning ? '2px solid #4caf50' : '1px solid #ff9800',
       }}
     >
       <div className={style.left}>
@@ -27,31 +27,23 @@ function MiniMenu({ toggleIsRunning, plural }) {
           />
         )}
         <div className={style.status}>
-          <h2>💬 </h2>
-          <PlayPauseIcons />
+          <h2>💬</h2>
         </div>
-        <Button
-          onClick={(e) => toggleIsRunning()}
-          variant='contained'
-          style={{ margin: '0 1rem', height: '40px' }}
-        >
-          {isRunning ? 'Pause' : 'Start'}
-        </Button>
+        <p>Filter:</p>
+        <Select />
         <Button
           onClick={(e) => setShowDeleteConfirmation(true)}
           variant='contained'
-          startIcon={<DeleteIcon />}
           style={{ background: '#AA647B', height: '40px' }}
         >
-          Delete all
+          <DeleteIcon />
         </Button>
-        <p>Filter:</p>
-        <Select />
       </div>
       <div className={style.right}>
+        <PlayPauseIcons />
         <p>
-          {msgsInView.length}{' '}
-          {select !== 'view all' && `of ${state.length}`} {plural}
+          {msgsInView.length} {select !== 'view all' && `of ${state.length}`}{' '}
+          {plural}
         </p>
         <Chart mini={true} />
       </div>

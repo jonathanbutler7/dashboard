@@ -50,7 +50,7 @@ function FullMenu({ toggleIsRunning, plural }) {
         <Select />
       </div>
       <div className={style.right}>
-        <Chart />
+        <Chart mini={false} />
         <p>
           Displaying {msgsInView.length}{' '}
           {select !== 'view all' && `of ${state.length} total`} {plural}
