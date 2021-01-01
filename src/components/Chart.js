@@ -1,6 +1,6 @@
 import React from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
-import { useDashboard } from '../context'
+import { useDashboard } from '../context';
 
 function Chart() {
   const { state } = useDashboard();

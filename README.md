@@ -25,3 +25,41 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+## Folder Structure
+```
+└── src
+    ├── App.js
+    ├── components
+    │   ├── Chart.js
+    │   ├── Dialogue.js
+    │   ├── Dialogue.module.scss
+    │   ├── EditMessage.js
+    │   ├── EditMessage.module.scss
+    │   ├── Header.js
+    │   ├── Header.module.scss
+    │   ├── Menu.js
+    │   ├── Menu.module.scss
+    │   ├── Message.js
+    │   ├── Message.module.scss
+    │   ├── MessageButtons.js
+    │   ├── MessageButtons.module.scss
+    │   ├── Messages.js
+    │   ├── Messages.module.scss
+    │   ├── PlayPauseIcons.js
+    │   ├── PlayPauseIcons.module.scss
+    │   ├── Select.js
+    │   ├── Select.module.scss
+    │   └── Snackbar.js
+    ├── context.js
+    ├── helpers
+    │   ├── helpers.js
+    │   ├── styles.js
+    │   └── useInterval.js
+    ├── index.css
+    ├── index.js
+    ├── setupTests.js
+    └── store
+        ├── generator.js
+        ├── levels.js
+        └── reducer.js
+```
