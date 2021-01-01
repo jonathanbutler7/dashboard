@@ -9,16 +9,6 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
   const { setIsRunning, isRunning, dispatch, setSnackbar } = useDashboard();
 
   function firstButtonClicked(id) {
-    dispatch({ type: 'toggle-edit', payload: id });
-    if (!editMode) {
-      setIsRunning(false);
-    }
-    if (editMode) {
-      setIsRunning(true);
-    }
-  }
-
-  function secondButtonClicked(id) {
     if (!editMode) {
       setIsRunning(!isRunning);
       dispatch({ type: 'toggle-delete-confirmation', payload: id });
@@ -29,24 +19,34 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
     }
   }
 
+  function secondButtonClicked(id) {
+    dispatch({ type: 'toggle-edit', payload: id });
+    if (!editMode) {
+      setIsRunning(false);
+    }
+    if (editMode) {
+      setIsRunning(true);
+    }
+  }
+
   return (
     <div className={style.buttons}>
       {confirm && <Dialogue id={id} />}
       <Button
         onClick={(e) => firstButtonClicked(id)}
         variant='contained'
-        color={editMode ? 'default' : 'primary'}
+        color={editMode ? 'primary' : 'secondary'}
+        startIcon={!editMode && <DeleteIcon />}
         style={{ marginRight: '1rem' }}
       >
-        {editMode ? 'Cancel' : 'Edit'}
+        {editMode ? 'Accept' : 'Delete'}
       </Button>
       <Button
         onClick={(e) => secondButtonClicked(id)}
         variant='contained'
-        color={editMode ? 'primary' : 'secondary'}
-        startIcon={!editMode && <DeleteIcon />}
+        color={editMode ? 'default' : 'primary'}
       >
-        {editMode ? 'Accept' : 'Delete'}
+        {editMode ? 'Cancel' : 'Edit'}
       </Button>
     </div>
   );

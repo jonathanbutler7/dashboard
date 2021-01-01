@@ -2,7 +2,7 @@ import moment from 'moment-timezone';
 
 export function pickAvatarColor(level) {
   if (level === 'error') return 'secondary';
-  if (level === 'warn') return 'primary';
+  if (level === 'warn') return 'orange';
   if (level === 'status') return 'default';
 }
 
