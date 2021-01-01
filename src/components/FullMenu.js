@@ -46,7 +46,7 @@ function FullMenu({ toggleIsRunning, plural }) {
           Delete all
         </Button>
         <br />
-        <p>Show only:</p>
+        <p>Filter:</p>
         <Select />
       </div>
       <div className={style.right}>
