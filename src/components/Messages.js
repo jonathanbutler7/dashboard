@@ -17,7 +17,7 @@ function Messages() {
   }, [messages, dispatch]);
 
   return (
-    <div className={style.main}>
+    <div className={style.main} id='messages'>
       {msgsInView.map((msg, key) => (
         <div key={key}>
           {msg.edit ? <EditMessage msg={msg} /> : <Message msg={msg} />}
