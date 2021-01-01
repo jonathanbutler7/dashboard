@@ -11,7 +11,7 @@ import { useStyles } from '../helpers/styles';
 function SelectMenu({ inEditView, id, prevLevel }) {
   const { setSnackbar, setSelect, dispatch } = useDashboard();
   const classes = useStyles();
-  const [it, setIt] = useState('');
+  const [level, setLevel] = useState('');
   let options;
 
   if (inEditView) {
@@ -22,11 +22,11 @@ function SelectMenu({ inEditView, id, prevLevel }) {
   }
 
   function handleChange(event) {
-    let level = event.target.value;
-    setIt(level);
-    setSnackbar(`Successfully changed level to ${level}`);
-    setSelect(level);
-    dispatch({ type: 'change-level', payload: { id: id, level: level } });
+    let newLevel = event.target.value;
+    setLevel(newLevel);
+    setSnackbar(`Successfully changed level to ${newLevel}`);
+    setSelect(newLevel);
+    dispatch({ type: 'change-level', payload: { id: id, level: newLevel } });
   }
 
   return (
@@ -45,7 +45,7 @@ function SelectMenu({ inEditView, id, prevLevel }) {
         labelId='demo-simple-select-outlined-label'
         id='demo-simple-select-outlined'
         style={{ color: '#E0E0E0' }}
-        value={it}
+        value={level}
         onChange={handleChange}
         label='Levels'
         className={style.label}

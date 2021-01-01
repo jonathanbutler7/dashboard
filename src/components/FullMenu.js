@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import style from './Menu.module.scss';
+import style from './FullMenu.module.scss';
 import Button from '@material-ui/core/Button';
 import PlayPauseIcons from './PlayPauseIcons';
 import DeleteIcon from '@material-ui/icons/Delete';

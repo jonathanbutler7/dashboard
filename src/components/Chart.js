@@ -1,6 +1,6 @@
 import React from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
-import style from './Chart.module.scss'
+import style from './Chart.module.scss';
 import { useDashboard } from '../context';
 
 function Chart({ mini }) {

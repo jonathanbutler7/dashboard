@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useDashboard } from '../context';
+import { getPlural } from '../helpers/helpers';
 import FullMenu from './FullMenu';
 import MiniMenu from './MiniMenu';
 import style from './Header.module.scss';
 
 function Header() {
-  const { setIsRunning, isRunning, state, setSnackbar } = useDashboard();
+  const {
+    setIsRunning,
+    isRunning,
+    state,
+    setSnackbar,
+    msgsInView,
+  } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [offset, setOffset] = useState(0);
   let totalHeight;
 
-  if (state.length > 0) {
+  if (state.length > 3) {
     totalHeight = document.getElementById('messages').clientHeight;
   }
 
   useEffect(() => {
+    setPlural(getPlural(state));
     if (totalHeight > 490) {
       window.onscroll = () => {
         setOffset(window.pageYOffset);
@@ -22,23 +30,15 @@ function Header() {
     }
   }, [state, totalHeight]);
 
-  useEffect(() => {
-    if (state.length === 1) {
-      setPlural('message');
-    }
-    if (state.length !== 1) {
-      setPlural('messages');
-    }
-  }, [state]);
-
   function toggleIsRunning() {
     setIsRunning(!isRunning);
     let message = isRunning ? 'Paused' : 'Started';
     setSnackbar(message);
   }
+
   return (
     <>
-      {offset < 1 ? (
+      {offset < 1 || msgsInView.length === 3 ? (
         <>
           <div className={style.main}>
             <h1>Messages Dashboard 💬</h1>
