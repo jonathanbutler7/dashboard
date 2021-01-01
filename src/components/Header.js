@@ -8,14 +8,19 @@ function Header() {
   const { setIsRunning, isRunning, state, setSnackbar } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [offset, setOffset] = useState(0);
+  let totalHeight;
+
+  if (state.length > 0) {
+    totalHeight = document.getElementById('messages').clientHeight;
+  }
 
   useEffect(() => {
-    window.onscroll = () => {
-      setOffset(window.pageYOffset);
-    };
-  }, []);
-
-  console.log(offset);
+    if (totalHeight > 490) {
+      window.onscroll = () => {
+        setOffset(window.pageYOffset);
+      };
+    }
+  }, [state, totalHeight]);
 
   useEffect(() => {
     if (state.length === 1) {

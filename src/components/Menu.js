@@ -10,7 +10,8 @@ function Menu() {
 
   useEffect(() => {
     window.onscroll = () => {
-      setOffset(window.pageYOffset);
+      // setOffset(window.pageYOffset);
+      
     };
   }, []);
 
