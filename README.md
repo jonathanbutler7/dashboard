@@ -1,8 +1,8 @@
 # What is this project?
 
-This project was a take home coding challenge: 
+[This project](https://serene-savannah-58732.herokuapp.com/) was a take home coding challenge: 
 
-**Build a dashboard to display messages from a server.** 
+**Build a dashboard to display messages from a server that appear every two seconds.** 
 
 The requirements were: 
 1. Display the messages
