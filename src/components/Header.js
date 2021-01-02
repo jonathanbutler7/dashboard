@@ -17,7 +17,7 @@ function Header() {
   const [offset, setOffset] = useState(0);
   let totalHeight;
 
-  if (state.length > 3) {
+  if (msgsInView.length > 3) {
     totalHeight = document.getElementById('messages').clientHeight;
   }
 
@@ -38,7 +38,7 @@ function Header() {
 
   return (
     <>
-      {offset < 1 || msgsInView.length === 3 ? (
+      {offset < 1 || msgsInView.length <= 3 ? (
         <>
           <div className={style.main}>
             <h1>Messages Dashboard 💬</h1>
