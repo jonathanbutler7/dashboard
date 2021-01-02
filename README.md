@@ -30,31 +30,34 @@ You will also see any lint errors in the console.
 └── src
     ├── App.js
     ├── components
-    │   ├── Chart.js
-    │   ├── Dialogue.js
-    │   ├── Dialogue.module.scss
-    │   ├── EditMessage.js
-    │   ├── EditMessage.module.scss
-    │   ├── Header.js
-    │   ├── Header.module.scss
-    │   ├── Menu.js
-    │   ├── Menu.module.scss
-    │   ├── Message.js
-    │   ├── Message.module.scss
-    │   ├── MessageButtons.js
-    │   ├── MessageButtons.module.scss
-    │   ├── Messages.js
-    │   ├── Messages.module.scss
-    │   ├── PlayPauseIcons.js
-    │   ├── PlayPauseIcons.module.scss
-    │   ├── Select.js
-    │   ├── Select.module.scss
-    │   └── Snackbar.js
+    │   ├── Chart.js
+    │   ├── Chart.module.scss
+    │   ├── Dialogue.js
+    │   ├── Dialogue.module.scss
+    │   ├── EditMessage.js
+    │   ├── EditMessage.module.scss
+    │   ├── FullMenu.js
+    │   ├── FullMenu.module.scss
+    │   ├── Header.js
+    │   ├── Header.module.scss
+    │   ├── Message.js
+    │   ├── Message.module.scss
+    │   ├── MessageButtons.js
+    │   ├── MessageButtons.module.scss
+    │   ├── Messages.js
+    │   ├── Messages.module.scss
+    │   ├── MiniMenu.js
+    │   ├── MiniMenu.module.scss
+    │   ├── PlayPauseIcons.js
+    │   ├── PlayPauseIcons.module.scss
+    │   ├── Select.js
+    │   ├── Select.module.scss
+    │   └── Snackbar.js
     ├── context.js
     ├── helpers
-    │   ├── helpers.js
-    │   ├── styles.js
-    │   └── useInterval.js
+    │   ├── helpers.js
+    │   ├── styles.js
+    │   └── useInterval.js
     ├── index.css
     ├── index.js
     ├── setupTests.js
