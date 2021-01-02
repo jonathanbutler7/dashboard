@@ -16,7 +16,7 @@ function MiniMenu({ plural }) {
     <div
       className={style.main}
       style={{
-        borderBottom: isRunning ? '2px solid #4caf50' : '1px solid #ff9800',
+        borderBottom: isRunning ? '2px solid #4caf50' : '2px solid #ff9800',
       }}
     >
       <div className={style.left}>
