@@ -13,3 +13,12 @@ export function getAvatar(level) {
 export function getReadableTime(timestamp) {
   return moment(timestamp).format('llll');
 }
+
+export function getPlural(state) {
+  if (state.length === 1) {
+     return 'message';
+  }
+  if (state.length !== 1) {
+     return 'messages';
+  }
+}
