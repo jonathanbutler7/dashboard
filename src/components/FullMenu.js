@@ -37,7 +37,6 @@ function FullMenu({ toggleIsRunning, plural }) {
         <Button onClick={(e) => toggleIsRunning()} variant='contained'>
           {isRunning ? 'Pause' : 'Start'}
         </Button>
-
         <br />
         <p>Filter:</p>
         <Select />

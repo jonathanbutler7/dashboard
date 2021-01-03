@@ -43,11 +43,11 @@ function SelectMenu({ inEditView, id, prevLevel }) {
       <Select
         labelId='demo-simple-select-outlined-label'
         id='demo-simple-select-outlined'
-        style={{ color: '#E0E0E0' }}
+        style={{ backgroundColor: 'gainsboro', width: '100px' }}
         value={level}
         onChange={handleChange}
         label='Levels'
-        className={style.label}
+        className={classes.select}
       >
         {options.map(
           (level, key) =>
