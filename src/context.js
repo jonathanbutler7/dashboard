@@ -2,11 +2,16 @@ import React, { useContext, useState, createContext, useReducer } from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 import { reducer } from './store/reducer';
+import { ThemeProvider } from '@material-ui/core/styles';
+import {theme} from './helpers/theme'
+
 const DashboardContext = createContext();
 
 export function useDashboard() {
   return useContext(DashboardContext);
 }
+
+
 
 export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
@@ -47,7 +52,7 @@ export function DashboardProvider({ children }) {
 
   return (
     <DashboardContext.Provider value={value}>
-      {children}
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </DashboardContext.Provider>
   );
 }
