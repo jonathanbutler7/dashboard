@@ -6,41 +6,18 @@ import MessageButtons from './MessageButtons';
 import Select from './Select';
 import { getChipClass, getAvatar, getReadableTime } from '../helpers/helpers';
 import { useDashboard } from '../context';
-// import { useStyles } from '../helpers/styles';
-
-import { makeStyles } from '@material-ui/core/styles';
-import { orange, red, green } from '@material-ui/core/colors';
-export const customOrange = orange[300];
-export const customGreen = green[700];
-export const customRed = red[400];
-
-const useStyles = makeStyles({
-  formControl: {
-    margin: 1,
-    minWidth: 120,
-  },
-  warningChip: {
-    background: customOrange,
-    color: 'black',
-  },
-  statusChip: {
-    background: customGreen,
-    color: 'white',
-  },
-  errorChip: {
-    background: customRed,
-    color: 'white',
-  },
-  select: {
-    color: 'white',
-  },
-});
+import { withStyles } from '@material-ui/core/styles';
 
 function EditMessage({ msg }) {
-  const classes = useStyles();
   let { timestamp, level, id, message, confirm } = msg;
   const [text, setText] = useState(message);
   const { setIsRunning, dispatch } = useDashboard();
+
+  const StyleChip = withStyles({
+    root: {
+      backgroundColor: getChipClass(level),
+    },
+  })(Chip);
 
   function submit() {
     setNewMsg();
@@ -62,11 +39,7 @@ function EditMessage({ msg }) {
       <p>
         <small>Created: {getReadableTime(timestamp)}</small>
       </p>
-      <Chip
-        className={getChipClass(level, classes)}
-        label={level}
-        avatar={<Avatar>{getAvatar(level)}</Avatar>}
-      />
+      <StyleChip label={level} avatar={<Avatar>{getAvatar(level)}</Avatar>} />
       <br />
       <h4>Edit level:</h4>
       <Select inEditView={true} id={id} prevLevel={level} />

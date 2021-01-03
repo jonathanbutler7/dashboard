@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select';
 import { levels, levelsAll } from '../store/levels.js';
 import style from './Select.module.scss';
 import { useDashboard } from '../context';
-import { useStyles } from '../helpers/styles';
+import { useStyles } from '../helpers/useStyles';
 
 function SelectMenu({ inEditView, id, prevLevel }) {
   const { setSnackbar, setSelect, dispatch } = useDashboard();
