@@ -2,7 +2,7 @@ import React from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import style from './Chart.module.scss';
 import { useDashboard } from '../context';
-import { customOrange, customGreen, customRed } from '../helpers/styles';
+import { customOrange, customGreen, customRed } from '../helpers/useStyles';
 
 function Chart({ mini }) {
   const { state } = useDashboard();
