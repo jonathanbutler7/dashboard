@@ -2,8 +2,6 @@ import React, { useContext, useState, createContext, useReducer } from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 import { reducer } from './store/reducer';
-import { ThemeProvider } from '@material-ui/core/styles';
-import {theme} from './helpers/theme'
 
 const DashboardContext = createContext();
 
@@ -52,7 +50,7 @@ export function DashboardProvider({ children }) {
 
   return (
     <DashboardContext.Provider value={value}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      {children}
     </DashboardContext.Provider>
   );
 }
