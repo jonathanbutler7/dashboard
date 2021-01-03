@@ -4,26 +4,24 @@ export const customOrange = orange[300];
 export const customGreen = green[700];
 export const customRed = red[400];
 
-const useStyles = makeStyles({
+export const useMyStyles = makeStyles({
   formControl: {
     margin: 1,
     minWidth: 120,
   },
-  warning: {
-    backgroundColor: customOrange,
+  warningChip: {
+    background: customOrange,
     color: 'black',
   },
-  status: {
-    backgroundColor: customGreen,
+  statusChip: {
+    background: customGreen,
     color: 'white',
   },
-  error: {
-    backgroundColor: customRed,
+  errorChip: {
+    background: customRed,
     color: 'white',
   },
   select: {
     color: 'white',
   },
 });
-
-export { useStyles };

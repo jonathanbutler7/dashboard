@@ -2,11 +2,14 @@ import React, { useContext, useState, createContext, useReducer } from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 import { reducer } from './store/reducer';
+
 const DashboardContext = createContext();
 
 export function useDashboard() {
   return useContext(DashboardContext);
 }
+
+
 
 export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);

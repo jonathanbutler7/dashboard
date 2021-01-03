@@ -1,9 +1,10 @@
 import moment from 'moment-timezone';
+import { customOrange, customGreen, customRed } from '../helpers/useStyles';
 
-export function pickAvatarColor(level) {
-  if (level === 'error') return 'secondary';
-  if (level === 'warn') return 'primary';
-  if (level === 'status') return 'default';
+export function getChipClass(level) {
+  if (level === 'warn') return customOrange;
+  if (level === 'status') return customGreen;
+  if (level === 'error') return customRed;
 }
 
 export function getAvatar(level) {
@@ -16,9 +17,9 @@ export function getReadableTime(timestamp) {
 
 export function getPlural(state) {
   if (state.length === 1) {
-     return 'message';
+    return 'message';
   }
   if (state.length !== 1) {
-     return 'messages';
+    return 'messages';
   }
 }

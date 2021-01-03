@@ -2,6 +2,7 @@ import React from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import style from './Chart.module.scss';
 import { useDashboard } from '../context';
+import { customOrange, customGreen, customRed } from '../helpers/useStyles';
 
 function Chart({ mini }) {
   const { state } = useDashboard();
@@ -16,9 +17,9 @@ function Chart({ mini }) {
     <PieChart
       className={mini ? style.small : style.big}
       data={[
-        { title: 'warn', value: wPercent, color: '#3f51b5' },
-        { title: 'error', value: ePercent, color: '#f50057' },
-        { title: 'status', value: sPercent, color: '#e0e0e0' },
+        { title: 'warn', value: wPercent, color: customOrange },
+        { title: 'error', value: ePercent, color: customRed },
+        { title: 'status', value: sPercent, color: customGreen },
       ]}
     />
   );

@@ -10,8 +10,8 @@ import Chart from './Chart';
 
 function FullMenu({ toggleIsRunning, plural }) {
   const { isRunning, state, select, msgsInView } = useDashboard();
-
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
   return (
     <div className={style.main}>
       <div className={style.left}>
@@ -29,7 +29,8 @@ function FullMenu({ toggleIsRunning, plural }) {
           onClick={(e) => setShowDeleteConfirmation(true)}
           variant='contained'
           startIcon={<DeleteIcon />}
-          style={{ background: '#AA647B', marginRight: '1rem' }}
+          style={{ marginRight: '1rem' }}
+          color='secondary'
         >
           Delete all
         </Button>
