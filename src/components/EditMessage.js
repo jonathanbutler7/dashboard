@@ -4,20 +4,16 @@ import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
 import Select from './Select';
-import { getChipClass, getAvatar, getReadableTime } from '../helpers/helpers';
+import { getAvatar, getReadableTime } from '../helpers/helpers';
 import { useDashboard } from '../context';
+import { customChip } from '../helpers/useStyles';
 import { withStyles } from '@material-ui/core/styles';
 
 function EditMessage({ msg }) {
   let { timestamp, level, id, message, confirm } = msg;
   const [text, setText] = useState(message);
   const { setIsRunning, dispatch } = useDashboard();
-
-  const StyleChip = withStyles({
-    root: {
-      backgroundColor: getChipClass(level),
-    },
-  })(Chip);
+  const StyleChip = withStyles(customChip(level))(Chip);
 
   function submit() {
     setNewMsg();
