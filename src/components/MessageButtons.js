@@ -50,7 +50,7 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
       <Button
         onClick={(e) => secondButtonClicked(id)}
         variant='contained'
-        color={editMode ? 'default' : 'default'}
+        color={editMode ? 'default' : 'primary'}
       >
         {editMode ? 'Cancel' : 'Edit'}
       </Button>

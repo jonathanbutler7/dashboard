@@ -3,22 +3,20 @@ import style from './Message.module.scss';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
-import {
-  pickAvatarColor,
-  getAvatar,
-  getReadableTime,
-} from '../helpers/helpers';
+import { getAvatar, getReadableTime, getChipClass } from '../helpers/helpers';
+import { useStyles } from '../helpers/styles';
 
 function Message({ msg }) {
   let { timestamp, level, id, message, confirm } = msg;
-
+  const classes = useStyles();
+  
   return (
     <div className={style.message} id={id}>
       <p>
         <small>{getReadableTime(timestamp)}</small>
       </p>
       <Chip
-        color={pickAvatarColor(level)}
+        className={getChipClass(level, classes)}
         label={level}
         avatar={<Avatar>{getAvatar(level)}</Avatar>}
       />

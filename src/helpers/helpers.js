@@ -1,9 +1,9 @@
 import moment from 'moment-timezone';
 
-export function pickAvatarColor(level) {
-  if (level === 'error') return 'secondary';
-  if (level === 'warn') return 'primary';
-  if (level === 'status') return 'default';
+export function getChipClass(level, classes) {
+  if (level === 'warn') return classes.warningChip;
+  if (level === 'status') return classes.statusChip;
+  if (level === 'error') return classes.errorChip;
 }
 
 export function getAvatar(level) {
@@ -16,9 +16,9 @@ export function getReadableTime(timestamp) {
 
 export function getPlural(state) {
   if (state.length === 1) {
-     return 'message';
+    return 'message';
   }
   if (state.length !== 1) {
-     return 'messages';
+    return 'messages';
   }
 }

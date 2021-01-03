@@ -1,19 +1,24 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { orange, red, green } from '@material-ui/core/colors';
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles({
   formControl: {
-    margin: theme.spacing(1),
+    margin: 1,
     minWidth: 120,
   },
-  select: {
-    '&:before': {
-      borderColor: 'red',
-    },
-    '&:after': {
-      borderColor: 'red',
-    },
+  warningChip: {
+    background: orange[300],
+    color: 'black',
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  }
-}));
+  statusChip: {
+    background: green[700],
+    color: 'white',
+  },
+  errorChip: {
+    background: red[400],
+    color: 'white',
+  },
+  select: {
+    color: 'white',
+  },
+});
