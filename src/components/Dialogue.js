@@ -9,12 +9,10 @@ function Dialogue({ id, inMenu, setShowDeleteConfirmation }) {
 
   useEffect(() => {
     if (inMenu) {
-      let msg = 'Are you sure you want to delete all? This cannot be undone.';
-      setDeleteMessage(msg);
+      setDeleteMessage('Are you sure you want to delete all? This cannot be undone.');
     }
     if (!inMenu) {
-      let msg = 'Are you sure you want to delete this message?';
-      setDeleteMessage(msg);
+      setDeleteMessage('Are you sure you want to delete this message?');
     }
   }, [inMenu]);
 
@@ -23,7 +21,7 @@ function Dialogue({ id, inMenu, setShowDeleteConfirmation }) {
       setShowDeleteConfirmation(false);
     }
     if (!inMenu) {
-      dispatch({ type: 'toggle-delete-confirmation', payload: id });
+      dispatch({ type: 'toggle-message', payload: {id: id, property: 'delete'}});
       setIsRunning(!isRunning);
     }
   }
