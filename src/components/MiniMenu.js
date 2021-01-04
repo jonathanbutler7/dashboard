@@ -7,18 +7,19 @@ import Select from './Select';
 import { useDashboard } from '../context';
 import Dialogue from './Dialogue';
 import Chart from './Chart';
+import { customGreen, customOrange } from '../helpers/useStyles';
 
 function MiniMenu({ plural }) {
   const { isRunning, state, select, msgsInView } = useDashboard();
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-
+  const orangeBorder = `1px solid ${customOrange}`;
+  const greenBorder = `1px solid ${customGreen}`;
+  const borderStyle = {
+    borderBottom: isRunning ? greenBorder : orangeBorder,
+  };
+  
   return (
-    <div
-      className={style.main}
-      style={{
-        borderBottom: isRunning ? '2px solid #4caf50' : '2px solid #ff9800',
-      }}
-    >
+    <div className={style.main} style={borderStyle}>
       <div className={style.left}>
         {showDeleteConfirmation && (
           <Dialogue

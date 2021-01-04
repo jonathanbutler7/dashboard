@@ -28,15 +28,13 @@ function Dialogue({ id, inMenu, setShowDeleteConfirmation }) {
     }
   }
 
-  function deleteSelected(id) {
+  function deleteSelected(id = null) {
+    dispatch({ type: 'delete', payload: id });
     if (inMenu) {
-      dispatch({ type: 'delete-all' });
       setSnackbar('Successfully deleted all');
       setShowDeleteConfirmation(false);
     }
     if (!inMenu) {
-      dispatch({ type: 'delete-message', payload: id });
-      setIsRunning(!isRunning);
       setSnackbar('Successfully deleted message');
       setIsRunning(true);
     }

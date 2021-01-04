@@ -15,22 +15,13 @@ function EditMessage({ msg }) {
   const { setIsRunning, dispatch } = useDashboard();
   const StyleChip = withStyles(customChip(level))(Chip);
 
-  function submit() {
-    setNewMsg();
-  }
-
-  function changeText(val) {
-    setText(val);
-    dispatch({ type: 'change-text', payload: { id: id, text: val } });
-  }
-
   function setNewMsg() {
-    dispatch({ type: 'toggle-edit', payload: id });
+    dispatch({ type: 'change-text', payload: { id: id, text: text } });
     setIsRunning(true);
   }
 
   return (
-    <form className={style.editMessage} id={id} onSubmit={submit}>
+    <form className={style.editMessage} id={id} onSubmit={setNewMsg}>
       <h3>Edit details:</h3>
       <p>
         <small>Created: {getReadableTime(timestamp)}</small>
@@ -48,7 +39,7 @@ function EditMessage({ msg }) {
         cols='100'
         rows='3'
         defaultValue={text}
-        onChange={(e) => changeText(e.target.value)}
+        onChange={(e) => setText(e.target.value)}
       ></textarea>
       <MessageButtons
         confirm={confirm}

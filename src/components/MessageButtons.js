@@ -12,7 +12,7 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
     (id) => {
       if (!editMode) {
         setIsRunning(!isRunning);
-        dispatch({ type: 'toggle-delete-confirmation', payload: id });
+        dispatch({ type: 'toggle-message', payload: {id: id, property: 'delete'}});
       }
       if (editMode) {
         setNewMsg();
@@ -24,7 +24,7 @@ function MessageButtons({ id, confirm, editMode, setNewMsg }) {
 
   const secondButtonClicked = useCallback(
     (id) => {
-      dispatch({ type: 'toggle-edit', payload: id });
+      dispatch({ type: 'toggle-message', payload: {id: id, property: 'edit'}});
       if (!editMode) {
         setIsRunning(false);
       }

@@ -16,7 +16,6 @@ function Header() {
   const [plural, setPlural] = useState('messages');
   const [offset, setOffset] = useState(0);
   let totalHeight;
-
   if (msgsInView.length > 3) {
     totalHeight = document.getElementById('messages').clientHeight;
   }
