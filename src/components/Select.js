@@ -4,16 +4,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { levels, levelsAll } from '../store/levels.js';
+import { selectStyle } from '../helpers/useStyles';
 import style from './Select.module.scss';
 import { useDashboard } from '../context';
-import { useStyles } from '../helpers/useStyles';
 
 function SelectMenu({ inEditView, id, prevLevel }) {
   const { setSnackbar, setSelect, dispatch } = useDashboard();
-  const classes = useStyles();
   const [level, setLevel] = useState('');
   let options;
-
   if (inEditView) {
     options = levels;
   }
@@ -30,10 +28,9 @@ function SelectMenu({ inEditView, id, prevLevel }) {
   }
 
   return (
-    <FormControl variant='outlined' className={classes.formControl}>
+    <FormControl variant='outlined'>
       <InputLabel
         id='demo-simple-select-outlined-label'
-        className={classes.select}
         classes={{
           underline: style.underline,
         }}
@@ -43,11 +40,10 @@ function SelectMenu({ inEditView, id, prevLevel }) {
       <Select
         labelId='demo-simple-select-outlined-label'
         id='demo-simple-select-outlined'
-        style={{ backgroundColor: 'gainsboro', width: '100px' }}
+        style={selectStyle}
         value={level}
         onChange={handleChange}
         label='Levels'
-        className={classes.select}
       >
         {options.map(
           (level, key) =>
