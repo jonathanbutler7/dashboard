@@ -9,8 +9,6 @@ export function useDashboard() {
   return useContext(DashboardContext);
 }
 
-
-
 export function DashboardProvider({ children }) {
   const [isRunning, setIsRunning] = useState(true);
   let [messages, setMessages] = useState([]);

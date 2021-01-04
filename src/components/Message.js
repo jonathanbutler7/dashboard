@@ -3,13 +3,14 @@ import style from './Message.module.scss';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
-import { getAvatar, getReadableTime, getChipClass } from '../helpers/helpers';
+import { getAvatar, getReadableTime, getChipBackground, getChipColor } from '../helpers/helpers';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  chipStyle: function (props) {
+  chipStyle: function (msg) {
     return {
-      backgroundColor: getChipClass(props.level),
+      backgroundColor: getChipBackground(msg.level),
+      color: getChipColor(msg.level)
     };
   },
 });
