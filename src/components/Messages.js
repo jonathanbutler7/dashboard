@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Message from './Message';
 import style from './Messages.module.scss';
 import EditMessage from './EditMessage';
+import ToTop from './ToTop';
 import { useDashboard } from '../context';
 
 function Messages() {

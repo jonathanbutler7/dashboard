@@ -4,6 +4,7 @@ import { getPlural } from '../helpers/helpers';
 import FullMenu from './FullMenu';
 import MiniMenu from './MiniMenu';
 import style from './Header.module.scss';
+import ToTop from './ToTop';
 
 function Header() {
   const {
@@ -36,18 +37,25 @@ function Header() {
   }
 
   return (
-    <>
+    <div>
       {offset < 1 || msgsInView.length <= 3 ? (
         <>
           <div className={style.main}>
             <h1>Messages Dashboard 💬</h1>
           </div>
-          <FullMenu toggleIsRunning={toggleIsRunning} plural={plural} />
+          <FullMenu
+            toggleIsRunning={toggleIsRunning}
+            plural={plural}
+            id='top'
+          />
         </>
       ) : (
-        <MiniMenu toggleIsRunning={toggleIsRunning} plural={plural} />
+        <>
+          <MiniMenu toggleIsRunning={toggleIsRunning} plural={plural} />
+          <ToTop />
+        </>
       )}
-    </>
+    </div>
   );
 }
 

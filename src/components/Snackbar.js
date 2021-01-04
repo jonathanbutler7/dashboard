@@ -19,7 +19,7 @@ export default function SimpleSnackbar() {
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'right',
+          horizontal: 'left',
         }}
         open={Boolean(snackbar)}
         autoHideDuration={4000}
