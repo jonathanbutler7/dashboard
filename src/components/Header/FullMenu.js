@@ -9,7 +9,7 @@ import Dialogue from '../Popups/Dialogue';
 import Chart from './Chart';
 
 function FullMenu({ plural, toggleIsRunning }) {
-  const { state, msgsInView } = useDashboard();
+  const { state } = useDashboard();
   const [showDeleteConfirmation, setShowDelete] = useState(false);
 
   return (

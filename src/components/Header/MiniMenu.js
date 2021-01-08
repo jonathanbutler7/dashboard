@@ -10,7 +10,7 @@ import Chart from './Chart';
 import { customGreen, customOrange } from '../../helpers/useStyles';
 
 function MiniMenu({ plural, toggleIsRunning }) {
-  const { state, msgsInView } = useDashboard();
+  const { state } = useDashboard();
   const [showDeleteConfirmation, setShowDelete] = useState(false);
 
   const orangeBorder = `1px solid ${customOrange}`;

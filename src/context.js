@@ -28,13 +28,12 @@ export function DashboardProvider({ children }) {
   if (state.select === 'view all') {
     state.msgsInView = state.allMessages;
   }
-  
+
   useInterval(
     () => {
-      const newMsg = randomGenerator();
       dispatch({
         type: 'ADD_NEW_MESSAGE',
-        payload: newMsg,
+        payload: randomGenerator(),
       });
     },
     state.isRunning ? 2000 : null

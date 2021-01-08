@@ -1,11 +1,9 @@
 import React from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { levels, levelsAll } from '../../store/levels.js';
 import { selectStyle } from '../../helpers/useStyles';
-import style from './Select.module.scss';
 import { useDashboard } from '../../context';
 
 function SelectMenu({ inEditView, level, setLevel }) {
@@ -37,14 +35,6 @@ function SelectMenu({ inEditView, level, setLevel }) {
 
   return (
     <FormControl variant='outlined'>
-      <InputLabel
-        id='demo-simple-select-outlined-label'
-        classes={{
-          underline: style.underline,
-        }}
-      >
-        Levels
-      </InputLabel>
       <Select
         labelId='demo-simple-select-outlined-label'
         id='demo-simple-select-outlined'

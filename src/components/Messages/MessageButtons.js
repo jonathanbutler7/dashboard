@@ -55,18 +55,13 @@ function MessageButtons({
       >
         {editMode ? 'Accept' : 'Delete'}
       </Button>
-      {/* <Button
+      <Button
         onClick={() => secondButtonClicked()}
         variant='contained'
         color={editMode ? 'default' : 'primary'}
       >
         {editMode ? 'Cancel' : 'Edit'}
-      </Button> */}
-      <button
-        onClick={() => secondButtonClicked()}
-      >
-        {editMode ? 'Cancel' : 'Edit'}
-      </button>
+      </Button>
     </div>
   );
 }
