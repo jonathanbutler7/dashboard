@@ -1,4 +1,4 @@
-import React, { useContext, useState, createContext, useReducer } from 'react';
+import React, { useContext, createContext, useReducer } from 'react';
 import { useInterval } from './helpers/useInterval';
 import { randomGenerator } from './store/generator';
 import { reducer } from './store/reducer';
@@ -9,41 +9,40 @@ export function useDashboard() {
   return useContext(DashboardContext);
 }
 
+const initialState = {
+  allMessages: [],
+  msgsInView: [],
+  isRunning: false,
+  snackbar: '',
+  select: 'view all',
+};
+
 export function DashboardProvider({ children }) {
-  const [isRunning, setIsRunning] = useState(true);
-  let [messages, setMessages] = useState([]);
-  let [state, dispatch] = useReducer(reducer, messages);
-  const [snackbar, setSnackbar] = useState('');
-  const [select, setSelect] = useState('view all');
+  let [state, dispatch] = useReducer(reducer, initialState);
 
-  let msgsInView = state;
-  if (select !== 'view all') {
-    msgsInView = state.filter((message) => message.level === select);
+  if (state.select !== 'view all') {
+    state.msgsInView = state.allMessages.filter(
+      (message) => message.level === state.select
+    );
   }
-  if (select === 'view all') {
-    msgsInView = state;
+  if (state.select === 'view all') {
+    state.msgsInView = state.allMessages;
   }
-
+  
   useInterval(
     () => {
       const newMsg = randomGenerator();
-      const newMsgs = [...messages, { ...newMsg, edit: false, confirm: false }];
-      setMessages(newMsgs);
+      dispatch({
+        type: 'add-new-message',
+        payload: newMsg,
+      });
     },
-    isRunning ? 2000 : null
+    state.isRunning ? 100 : null
   );
 
   const value = {
-    messages,
-    isRunning,
-    setIsRunning,
-    snackbar,
-    setSnackbar,
-    select,
-    setSelect,
     state,
     dispatch,
-    msgsInView,
   };
 
   return (

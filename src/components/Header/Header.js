@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useDashboard } from '../context';
-import { getPlural } from '../helpers/helpers';
+import { useDashboard } from '../../context';
+import { getPlural } from '../../helpers/helpers';
 import FullMenu from './FullMenu';
 import MiniMenu from './MiniMenu';
 import style from './Header.module.scss';
-import ToTop from './ToTop';
+import ToTop from '../Popups/ToTop';
 
 function Header() {
-  const {
-    setIsRunning,
-    isRunning,
-    state,
-    setSnackbar,
-    msgsInView,
-  } = useDashboard();
+  const { state, dispatch } = useDashboard();
   const [plural, setPlural] = useState('messages');
   const [offset, setOffset] = useState(0);
   let totalHeight;
-  if (msgsInView.length > 3) {
+
+  if (state.msgsInView.length > 3) {
     totalHeight = document.getElementById('messages').clientHeight;
   }
 
@@ -31,14 +26,14 @@ function Header() {
   }, [state, totalHeight]);
 
   function toggleIsRunning() {
-    setIsRunning(!isRunning);
-    let message = isRunning ? 'Paused' : 'Started';
-    setSnackbar(message);
+    let message = state.isRunning ? 'Paused' : 'Started';
+    dispatch({ type: 'is-running', payload: !state.isRunning });
+    dispatch({ type: 'set-snackbar', payload: message });
   }
 
   return (
     <div>
-      {offset < 1 || msgsInView.length <= 3 ? (
+      {offset < 1 || state.msgsInView.length <= 3 ? (
         <>
           <div className={style.main}>
             <h1>Messages Dashboard 💬</h1>

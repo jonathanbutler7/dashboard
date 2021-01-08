@@ -1,6 +1,8 @@
 # What is this project?
 
-[LIVE](https://serene-savannah-58732.herokuapp.com/)
+[LIVE](https://serene-savannah-58732.herokuapp.com/) 
+
+(*This app runs on Heroku's free dyno, so the boot up time can be slow*)
 
 This project was a take home coding challenge: 
 
@@ -32,34 +34,40 @@ You will also see any lint errors in the console.
 └── src
     ├── App.js
     ├── components
-    │   ├── Chart.js
-    │   ├── Chart.module.scss
-    │   ├── Dialogue.js
-    │   ├── Dialogue.module.scss
-    │   ├── EditMessage.js
-    │   ├── EditMessage.module.scss
-    │   ├── FullMenu.js
-    │   ├── FullMenu.module.scss
-    │   ├── Header.js
-    │   ├── Header.module.scss
-    │   ├── Message.js
-    │   ├── Message.module.scss
-    │   ├── MessageButtons.js
-    │   ├── MessageButtons.module.scss
-    │   ├── Messages.js
-    │   ├── Messages.module.scss
-    │   ├── MiniMenu.js
-    │   ├── MiniMenu.module.scss
-    │   ├── PlayPauseIcons.js
-    │   ├── PlayPauseIcons.module.scss
-    │   ├── Select.js
-    │   ├── Select.module.scss
-    │   └── Snackbar.js
+    │   ├── Header
+    │   │   ├── Chart.js
+    │   │   ├── Chart.module.scss
+    │   │   ├── FullMenu.js
+    │   │   ├── FullMenu.module.scss
+    │   │   ├── Header.js
+    │   │   ├── Header.module.scss
+    │   │   ├── MiniMenu.js
+    │   │   ├── MiniMenu.module.scss
+    │   │   ├── PlayPauseIcons.js
+    │   │   ├── PlayPauseIcons.module.scss
+    │   │   ├── Select.js
+    │   │   ├── Select.module.scss
+    │   │   └── ToTop.js
+    │   ├── Messages
+    │   │   ├── EditMessage.js
+    │   │   ├── EditMessage.module.scss
+    │   │   ├── Message.module.scss
+    │   │   ├── MessageButtons.js
+    │   │   ├── MessageButtons.module.scss
+    │   │   ├── MessageCard.js
+    │   │   ├── Messages.js
+    │   │   ├── Messages.module.scss
+    │   │   └── ViewMessage.js
+    │   └── Popups
+    │       ├── Dialogue.js
+    │       ├── Dialogue.module.scss
+    │       ├── ExplainerModal.js
+    │       └── Snackbar.js
     ├── context.js
     ├── helpers
     │   ├── helpers.js
-    │   ├── styles.js
-    │   └── useInterval.js
+    │   ├── useInterval.js
+    │   └── useStyles.js
     ├── index.css
     ├── index.js
     ├── setupTests.js

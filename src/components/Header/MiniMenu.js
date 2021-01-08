@@ -4,28 +4,26 @@ import Button from '@material-ui/core/Button';
 import PlayPauseIcons from './PlayPauseIcons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Select from './Select';
-import { useDashboard } from '../context';
-import Dialogue from './Dialogue';
+import { useDashboard } from '../../context';
+import Dialogue from '../Popups/Dialogue';
 import Chart from './Chart';
-import { customGreen, customOrange } from '../helpers/useStyles';
+import { customGreen, customOrange } from '../../helpers/useStyles';
 
-function MiniMenu({ plural }) {
-  const { isRunning, state, select, msgsInView } = useDashboard();
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+function MiniMenu({ plural, toggleIsRunning }) {
+  const { state, msgsInView } = useDashboard();
+  const [showDeleteConfirmation, setShowDelete] = useState(false);
+
   const orangeBorder = `1px solid ${customOrange}`;
   const greenBorder = `1px solid ${customGreen}`;
   const borderStyle = {
-    borderBottom: isRunning ? greenBorder : orangeBorder,
+    borderBottom: state.isRunning ? greenBorder : orangeBorder,
   };
-  
+
   return (
     <div className={style.main} style={borderStyle}>
       <div className={style.left}>
         {showDeleteConfirmation && (
-          <Dialogue
-            inMenu={true}
-            setShowDeleteConfirmation={setShowDeleteConfirmation}
-          />
+          <Dialogue inMenu={true} setShowDelete={setShowDelete} />
         )}
         <div className={style.status}>
           <h2>💬</h2>
@@ -33,7 +31,7 @@ function MiniMenu({ plural }) {
         <p>Filter:</p>
         <Select />
         <Button
-          onClick={(e) => setShowDeleteConfirmation(true)}
+          onClick={(e) => setShowDelete(true)}
           variant='contained'
           style={{ background: '#AA647B', height: '40px', paddingLeft: '1rem' }}
         >
@@ -41,9 +39,10 @@ function MiniMenu({ plural }) {
         </Button>
       </div>
       <div className={style.right}>
-        <PlayPauseIcons />
+        <PlayPauseIcons toggleIsRunning={toggleIsRunning} />
         <p>
-          {msgsInView.length} {select !== 'view all' && `of ${state.length}`}{' '}
+          {state.msgsInView.length}{' '}
+          {state.select !== 'view all' && `of ${state.allMessages.length}`}{' '}
           {plural}
         </p>
         <Chart mini={true} />

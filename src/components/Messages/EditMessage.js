@@ -3,33 +3,42 @@ import style from './EditMessage.module.scss';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import MessageButtons from './MessageButtons';
-import Select from './Select';
-import { getAvatar, getReadableTime } from '../helpers/helpers';
-import { useDashboard } from '../context';
-import { customChip } from '../helpers/useStyles';
+import Select from '../Header/Select';
+import { getAvatar, getReadableTime } from '../../helpers/helpers';
+import { useDashboard } from '../../context';
+import { customChip } from '../../helpers/useStyles';
 import { withStyles } from '@material-ui/core/styles';
 
-function EditMessage({ msg }) {
-  let { timestamp, level, id, message, confirm } = msg;
-  const [text, setText] = useState(message);
-  const { setIsRunning, dispatch } = useDashboard();
+function EditMessage({
+  msg,
+  whichOne,
+  setWhichOne,
+  setNewText,
+  level,
+  setLevel,
+}) {
+  const { dispatch } = useDashboard();
+  const [text, setText] = useState(msg.message);
   const StyleChip = withStyles(customChip(level))(Chip);
 
   function setNewMsg() {
-    dispatch({ type: 'change-text', payload: { id: id, text: text } });
-    setIsRunning(true);
+    setNewText(text);
+    dispatch({ type: 'is-running', payload: true });
   }
 
   return (
-    <form className={style.editMessage} id={id} onSubmit={setNewMsg}>
+    <form className={style.editMessage} id={msg.id} onSubmit={setNewMsg}>
       <h3>Edit details:</h3>
-      <p>
-        <small>Created: {getReadableTime(timestamp)}</small>
-      </p>
+      <p>Created: {getReadableTime(msg.timestamp)}</p>
       <StyleChip label={level} avatar={<Avatar>{getAvatar(level)}</Avatar>} />
       <br />
       <h4>Edit level:</h4>
-      <Select inEditView={true} id={id} prevLevel={level} />
+      <Select
+        inEditView={true}
+        id={msg.id}
+        level={level}
+        setLevel={setLevel}
+      />
       <br />
       <h4>Edit message:</h4>
       <br />
@@ -42,10 +51,11 @@ function EditMessage({ msg }) {
         onChange={(e) => setText(e.target.value)}
       ></textarea>
       <MessageButtons
-        confirm={confirm}
-        id={id}
+        id={msg.id}
         editMode={true}
         setNewMsg={setNewMsg}
+        whichOne={whichOne}
+        setWhichOne={setWhichOne}
       />
     </form>
   );

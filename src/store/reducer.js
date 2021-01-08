@@ -1,54 +1,24 @@
 export function reducer(state, action) {
-  let newState;
   switch (action.type) {
     case 'add-new-message':
-      newState = [...state, action.payload];
-      return newState;
-    case 'change-text':
-      newState = state.map((msg) =>
-        action.payload.id === msg.id
-          ? { ...msg, message: action.payload.text, edit: false }
-          : msg
+      return {
+        ...state,
+        allMessages: [...state.allMessages, action.payload],
+      };
+    case 'delete-all':
+      return { ...state, messages: [] };
+    case 'delete-one':
+      let newMessages = state.allMessages.filter(
+        (msg) => msg.id !== action.payload
       );
-      return newState;
-    case 'change-level':
-      newState = state.map((msg) =>
-        action.payload.id === msg.id
-          ? {
-              ...msg,
-              level: action.payload.level,
-            }
-          : msg
-      );
-      return newState;
-    case 'toggle-message':
-      if (action.payload.property === 'edit') {
-        newState = state.map((msg) =>
-          action.payload.id === msg.id
-            ? { ...msg, edit: !msg.edit }
-            : { ...msg, edit: false }
-        );
-      }
-      if (action.payload.property === 'delete') {
-        newState = state.map((msg) =>
-          action.payload.id === msg.id
-            ? {
-                ...msg,
-                confirm: !msg.confirm,
-              }
-            : msg
-        );
-      }
-      return newState;
-    case 'delete':
-      if (!action.payload) {
-        newState = [];
-      }
-      if (action.payload) {
-        newState = state.filter((msg) => msg.id !== action.payload);
-      }
-      return newState;
+      return { ...state, messages: newMessages };
+    case 'is-running':
+      return { ...state, isRunning: action.payload };
+    case 'set-snackbar':
+      return { ...state, snackbar: action.payload };
+    case 'set-select':
+      return { ...state, select: action.payload };
     default:
-      return newState;
+      return;
   }
 }

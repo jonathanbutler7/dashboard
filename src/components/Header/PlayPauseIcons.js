@@ -1,21 +1,18 @@
 import React from 'react';
 import { FaPlay, FaPauseCircle } from 'react-icons/fa';
-import { useDashboard } from '../context';
+import { useDashboard } from '../../context';
 import style from './PlayPauseIcons.module.scss';
 
-function PlayPauseIcons() {
-  const { setIsRunning, isRunning } = useDashboard();
+function PlayPauseIcons({ toggleIsRunning }) {
+  const { state } = useDashboard();
   return (
     <div className={style.icon}>
-      {isRunning ? (
-        <FaPlay
-          className={style.playIcon}
-          onClick={() => setIsRunning(!isRunning)}
-        />
+      {state.isRunning ? (
+        <FaPlay className={style.playIcon} onClick={() => toggleIsRunning()} />
       ) : (
         <FaPauseCircle
           className={style.pauseIcon}
-          onClick={() => setIsRunning(!isRunning)}
+          onClick={() => toggleIsRunning()}
         />
       )}
     </div>

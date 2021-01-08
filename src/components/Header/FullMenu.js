@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button';
 import PlayPauseIcons from './PlayPauseIcons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Select from './Select';
-import { useDashboard } from '../context';
-import Dialogue from './Dialogue';
+import { useDashboard } from '../../context';
+import Dialogue from '../Popups/Dialogue';
 import Chart from './Chart';
 
-function FullMenu({ toggleIsRunning, plural }) {
-  const { isRunning, state, select, msgsInView } = useDashboard();
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+function FullMenu({ plural, toggleIsRunning }) {
+  const { state, msgsInView } = useDashboard();
+  const [showDeleteConfirmation, setShowDelete] = useState(false);
 
   return (
     <div className={style.main}>
@@ -18,15 +18,15 @@ function FullMenu({ toggleIsRunning, plural }) {
         {showDeleteConfirmation && (
           <Dialogue
             inMenu={true}
-            setShowDeleteConfirmation={setShowDeleteConfirmation}
+            setShowDelete={setShowDelete}
           />
         )}
         <div className={style.status}>
-          <h2>Status: {isRunning ? 'Running' : 'Paused'}</h2>
-          <PlayPauseIcons />
+          <h2>Status: {state.isRunning ? 'Running' : 'Paused'}</h2>
+          <PlayPauseIcons toggleIsRunning={toggleIsRunning} />
         </div>
         <Button
-          onClick={(e) => setShowDeleteConfirmation(true)}
+          onClick={(e) => setShowDelete(true)}
           variant='contained'
           startIcon={<DeleteIcon />}
           style={{ marginRight: '1rem' }}
@@ -35,7 +35,7 @@ function FullMenu({ toggleIsRunning, plural }) {
           Delete all
         </Button>
         <Button onClick={(e) => toggleIsRunning()} variant='contained'>
-          {isRunning ? 'Pause' : 'Start'}
+          {state.isRunning ? 'Pause' : 'Start'}
         </Button>
         <br />
         <p>Filter:</p>
@@ -44,8 +44,9 @@ function FullMenu({ toggleIsRunning, plural }) {
       <div className={style.right}>
         <Chart mini={false} />
         <p>
-          Displaying {msgsInView.length}{' '}
-          {select !== 'view all' && `of ${state.length} total`} {plural}
+          Displaying {state.msgsInView.length}{' '}
+          {state.select !== 'view all' && `of ${state.allMessages.length} total`}{' '}
+          {plural}
         </p>
       </div>
     </div>

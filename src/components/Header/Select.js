@@ -1,30 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { levels, levelsAll } from '../store/levels.js';
-import { selectStyle } from '../helpers/useStyles';
+import { levels, levelsAll } from '../../store/levels.js';
+import { selectStyle } from '../../helpers/useStyles';
 import style from './Select.module.scss';
-import { useDashboard } from '../context';
+import { useDashboard } from '../../context';
 
-function SelectMenu({ inEditView, id, prevLevel }) {
-  const { setSnackbar, setSelect, dispatch } = useDashboard();
-  const [level, setLevel] = useState('');
-  let options;
+function SelectMenu({ inEditView, level, setLevel }) {
+  const { dispatch, state } = useDashboard();
+  let options, scopedLevel;
+
+  // these two if statements help the select component know what to render if it is in the header menu or within a message component
   if (inEditView) {
     options = levels;
+    scopedLevel = level;
   }
   if (!inEditView) {
     options = levelsAll;
+    scopedLevel = state.select;
   }
 
   function handleChange(event) {
     let newLevel = event.target.value;
-    setLevel(newLevel);
-    setSnackbar(`Successfully changed level to ${newLevel}`);
-    setSelect(newLevel);
-    dispatch({ type: 'change-level', payload: { id: id, level: newLevel } });
+    if (inEditView) {
+      setLevel(newLevel);
+    } else {
+      dispatch({
+        type: 'set-snackbar',
+        payload: `Successfully changed level to ${newLevel}`,
+      });
+      dispatch({ type: 'set-select', payload: newLevel });
+    }
   }
 
   return (
@@ -41,18 +49,15 @@ function SelectMenu({ inEditView, id, prevLevel }) {
         labelId='demo-simple-select-outlined-label'
         id='demo-simple-select-outlined'
         style={selectStyle}
-        value={level}
+        value={scopedLevel}
         onChange={handleChange}
         label='Levels'
       >
-        {options.map(
-          (level, key) =>
-            level !== prevLevel && (
-              <MenuItem key={key} value={level}>
-                {level}
-              </MenuItem>
-            )
-        )}
+        {options.map((level, key) => (
+          <MenuItem key={key} value={level}>
+            {level}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
