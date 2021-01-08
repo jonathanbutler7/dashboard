@@ -11,8 +11,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 function EditMessage({
   msg,
-  whichOne,
-  setWhichOne,
+  editOrView,
+  setEditOrView,
   setNewText,
   level,
   setLevel,
@@ -54,8 +54,8 @@ function EditMessage({
         id={msg.id}
         editMode={true}
         setNewMsg={setNewMsg}
-        whichOne={whichOne}
-        setWhichOne={setWhichOne}
+        editOrView={editOrView}
+        setEditOrView={setEditOrView}
       />
     </form>
   );

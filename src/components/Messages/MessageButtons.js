@@ -9,8 +9,8 @@ function MessageButtons({
   id,
   showDelete,
   setShowDelete,
-  whichOne,
-  setWhichOne,
+  editOrView,
+  setEditOrView,
   editMode,
   setNewMsg,
 }) {
@@ -23,7 +23,7 @@ function MessageButtons({
     }
     if (editMode) {
       setNewMsg();
-      setWhichOne(!whichOne);
+      setEditOrView(!editOrView);
       dispatch({
         type: 'SET_SNACKBAR',
         payload: 'Successfully edited message',
@@ -34,8 +34,8 @@ function MessageButtons({
 
   const secondButtonClicked = useCallback(() => {
     dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
-    setWhichOne(!whichOne);
-  }, [dispatch, setWhichOne, state.isRunning, whichOne]);
+    setEditOrView(!editOrView);
+  }, [dispatch, setEditOrView, state.isRunning, editOrView]);
 
   return (
     <div className={style.buttons}>

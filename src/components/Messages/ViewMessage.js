@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     };
   },
 });
-function Message({ msg, text, setWhichOne, whichOne }) {
+function Message({ msg, text, setEditOrView, editOrView }) {
   const [showDelete, setShowDelete] = useState(false);
   const classes = useStyles(msg);
   
@@ -36,8 +36,8 @@ function Message({ msg, text, setWhichOne, whichOne }) {
         id={msg.id}
         showDelete={showDelete}
         setShowDelete={setShowDelete}
-        setWhichOne={setWhichOne}
-        whichOne={whichOne}
+        setEditOrView={setEditOrView}
+        editOrView={editOrView}
       />
     </div>
   );
