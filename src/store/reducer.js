@@ -1,22 +1,22 @@
 export function reducer(state, action) {
   switch (action.type) {
-    case 'add-new-message':
+    case 'ADD_NEW_MESSAGE':
       return {
         ...state,
         allMessages: [...state.allMessages, action.payload],
       };
-    case 'delete-all':
+    case 'DELETE_ALL':
       return { ...state, messages: [] };
-    case 'delete-one':
+    case 'DELETE_ONE':
       let newMessages = state.allMessages.filter(
         (msg) => msg.id !== action.payload
       );
       return { ...state, messages: newMessages };
-    case 'is-running':
+    case 'IS_RUNNING':
       return { ...state, isRunning: action.payload };
-    case 'set-snackbar':
+    case 'SET_SNACKBAR':
       return { ...state, snackbar: action.payload };
-    case 'set-select':
+    case 'SET_SELECT':
       return { ...state, select: action.payload };
     default:
       return;

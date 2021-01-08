@@ -11,7 +11,7 @@ export default function SimpleSnackbar() {
     if (reason === 'clickaway') {
       return;
     }
-    dispatch({ type: 'set-snackbar', payload: '' });
+    dispatch({ type: 'SET_SNACKBAR', payload: '' });
   }
 
   return (

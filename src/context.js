@@ -33,11 +33,11 @@ export function DashboardProvider({ children }) {
     () => {
       const newMsg = randomGenerator();
       dispatch({
-        type: 'add-new-message',
+        type: 'ADD_NEW_MESSAGE',
         payload: newMsg,
       });
     },
-    state.isRunning ? 100 : null
+    state.isRunning ? 2000 : null
   );
 
   const value = {

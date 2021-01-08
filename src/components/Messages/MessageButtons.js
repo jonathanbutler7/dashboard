@@ -18,22 +18,22 @@ function MessageButtons({
 
   function firstButtonClicked() {
     if (!editMode) {
-      dispatch({ type: 'is-running', payload: !state.isRunning });
+      dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
       setShowDelete(true);
     }
     if (editMode) {
       setNewMsg();
       setWhichOne(!whichOne);
       dispatch({
-        type: 'set-snackbar',
+        type: 'SET_SNACKBAR',
         payload: 'Successfully edited message',
       });
-      dispatch({ type: 'is-running', payload: !state.isRunning });
+      dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
     }
   }
 
   const secondButtonClicked = useCallback(() => {
-    dispatch({ type: 'is-running', payload: !state.isRunning });
+    dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
     setWhichOne(!whichOne);
   }, [dispatch, setWhichOne, state.isRunning, whichOne]);
 

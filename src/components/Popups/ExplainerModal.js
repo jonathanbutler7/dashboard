@@ -23,7 +23,7 @@ export default function SimpleModal() {
 
   const handleClose = () => {
     setOpen(false);
-    dispatch({type: 'is-running', payload: !state.isRunning });
+    dispatch({type: 'IS_RUNNING', payload: !state.isRunning });
   };
 
   return (

@@ -24,7 +24,7 @@ function Dialogue({ id, inMenu, setShowDelete }) {
     }
     if (!inMenu) {
       setShowDelete(false);
-      dispatch({ type: 'is-running', payload: !state.isRunning });
+      dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
     }
   }
 
@@ -39,15 +39,15 @@ function Dialogue({ id, inMenu, setShowDelete }) {
 
   function deleteAllAndSetSnackbar() {
     setShowDelete(false);
-    dispatch({ type: 'delete-all' });
-    dispatch({ type: 'set-snackbar', payload: 'Successfully deleted all' });
+    dispatch({ type: 'DELETE_ALL' });
+    dispatch({ type: 'SET_SNACKBAR', payload: 'Successfully deleted all' });
   }
 
   function deleteOneAndSetSnackbar() {
     setShowDelete(false);
-    dispatch({ type: 'delete-one', payload: id });
-    dispatch({ type: 'set-snackbar', payload: 'Successfully deleted message' });
-    dispatch({ type: 'is-running', payload: !state.isRunning });
+    dispatch({ type: 'DELETE_ONE', payload: id });
+    dispatch({ type: 'SET_SNACKBAR', payload: 'Successfully deleted message' });
+    dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
   }
 
   return (

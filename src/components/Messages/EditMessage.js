@@ -23,7 +23,7 @@ function EditMessage({
 
   function setNewMsg() {
     setNewText(text);
-    dispatch({ type: 'is-running', payload: true });
+    dispatch({ type: 'IS_RUNNING', payload: true });
   }
 
   return (

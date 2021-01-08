@@ -27,8 +27,8 @@ function Header() {
 
   function toggleIsRunning() {
     let message = state.isRunning ? 'Paused' : 'Started';
-    dispatch({ type: 'is-running', payload: !state.isRunning });
-    dispatch({ type: 'set-snackbar', payload: message });
+    dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
+    dispatch({ type: 'SET_SNACKBAR', payload: message });
   }
 
   return (

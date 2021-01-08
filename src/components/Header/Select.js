@@ -28,10 +28,10 @@ function SelectMenu({ inEditView, level, setLevel }) {
       setLevel(newLevel);
     } else {
       dispatch({
-        type: 'set-snackbar',
+        type: 'SET_SNACKBAR',
         payload: `Successfully changed level to ${newLevel}`,
       });
-      dispatch({ type: 'set-select', payload: newLevel });
+      dispatch({ type: 'SET_SELECT', payload: newLevel });
     }
   }
 
