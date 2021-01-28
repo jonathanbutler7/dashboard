@@ -19,7 +19,7 @@ const initialState = {
 
 export function DashboardProvider({ children }) {
   let [state, dispatch] = useReducer(reducer, initialState);
-
+  
   if (state.select !== 'view all') {
     state.msgsInView = state.allMessages.filter(
       (message) => message.level === state.select
