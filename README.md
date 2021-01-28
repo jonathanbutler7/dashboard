@@ -1,8 +1,6 @@
 # What is this project?
 
-[LIVE](https://serene-savannah-58732.herokuapp.com/) 
-
-(*This app runs on Heroku's free dyno, so the boot up time can be slow*)
+[CLICK HERE TO VIEW IT LIVE](https://serene-savannah-58732.herokuapp.com/) 
 
 This project was a take home coding challenge: 
 
