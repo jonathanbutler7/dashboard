@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import ToTop from './ToTop';
+import App from './App';
 
 test('renders learn react link', () => {
-  render(<ToTop />);
-  const linkElement = screen.getByText(/to top/i);
+  render(<App />);
+  const linkElement = screen.getByText(/Dashboard/i);
   expect(linkElement).toBeInTheDocument();
 });

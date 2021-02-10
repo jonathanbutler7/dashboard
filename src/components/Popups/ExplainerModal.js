@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleModal() {
   const { dispatch, state } = useDashboard();
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const handleClose = () => {
     setOpen(false);
