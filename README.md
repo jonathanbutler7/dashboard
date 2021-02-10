@@ -27,10 +27,25 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+### `npm test`
+
+Runs the frontend tests. See testing output below
+
+```
+Test Suites: 3 passed, 3 total
+Tests:       6 passed, 6 total
+Snapshots:   0 total
+Time:        2.723 s, estimated 3 s
+Ran all test suites.
+
+Watch Usage: Press w to show more.
+```
+
 ## Folder Structure
 ```
 └── src
     ├── App.js
+    ├── App.test.js
     ├── components
     │   ├── Header
     │   │   ├── Chart.js
@@ -44,8 +59,7 @@ You will also see any lint errors in the console.
     │   │   ├── PlayPauseIcons.js
     │   │   ├── PlayPauseIcons.module.scss
     │   │   ├── Select.js
-    │   │   ├── Select.module.scss
-    │   │   └── ToTop.js
+    │   │   └── Select.module.scss
     │   ├── Messages
     │   │   ├── EditMessage.js
     │   │   ├── EditMessage.module.scss
@@ -60,10 +74,13 @@ You will also see any lint errors in the console.
     │       ├── Dialogue.js
     │       ├── Dialogue.module.scss
     │       ├── ExplainerModal.js
-    │       └── Snackbar.js
+    │       ├── Snackbar.js
+    │       ├── ToTop.js
+    │       └── ToTop.test.js
     ├── context.js
     ├── helpers
     │   ├── helpers.js
+    │   ├── helpers.test.js
     │   ├── useInterval.js
     │   └── useStyles.js
     ├── index.css
