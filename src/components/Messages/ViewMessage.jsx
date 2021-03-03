@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import style from './Message.module.scss';
+import PropTypes from 'prop-types';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/core/styles';
+import style from './Message.module.scss';
 import MessageButtons from './MessageButtons';
 import {
   getAvatar,
@@ -9,20 +11,21 @@ import {
   getChipBackground,
   getChipColor,
 } from '../../helpers/helpers';
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  chipStyle: function (msg) {
+  chipStyle(msg) {
     return {
       backgroundColor: getChipBackground(msg.level),
       color: getChipColor(msg.level),
     };
   },
 });
-function Message({ msg, text, setEditOrView, editOrView }) {
+function ViewMessage({
+  msg, text, setEditOrView, editOrView,
+}) {
   const [showDelete, setShowDelete] = useState(false);
   const classes = useStyles(msg);
-  
+
   return (
     <div className={style.message} id={msg.id}>
       <p>{getReadableTime(msg.timestamp)}</p>
@@ -43,4 +46,11 @@ function Message({ msg, text, setEditOrView, editOrView }) {
   );
 }
 
-export default Message;
+export default ViewMessage;
+
+ViewMessage.propTypes = {
+  msg: PropTypes.objectOf.string.isRequired,
+  text: PropTypes.bool.isRequired,
+  setEditOrView: PropTypes.func.isRequired,
+  editOrView: PropTypes.bool.isRequired,
+};

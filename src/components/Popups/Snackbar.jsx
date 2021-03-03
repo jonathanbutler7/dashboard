@@ -27,7 +27,7 @@ export default function SimpleSnackbar() {
           onClose={handleClose}
           message={state.snackbar}
           severity='success'
-          action={
+          action={(
             <IconButton
               size='small'
               aria-label='close'
@@ -36,7 +36,7 @@ export default function SimpleSnackbar() {
             >
               <CloseIcon fontSize='small' />
             </IconButton>
-          }
+          )}
         />
       )}
     </>

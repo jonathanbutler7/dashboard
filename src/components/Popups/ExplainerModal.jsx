@@ -23,7 +23,7 @@ export default function SimpleModal() {
 
   const handleClose = () => {
     setOpen(false);
-    dispatch({type: 'IS_RUNNING', payload: !state.isRunning });
+    dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
   };
 
   return (
@@ -43,7 +43,9 @@ export default function SimpleModal() {
         <ol>
           <li>Display the messages</li>
           <li>
-            Filter messages by <code>level</code>
+            Filter messages by
+            {' '}
+            <code>level</code>
           </li>
           <li>Start/stop messages from the server</li>
           <li>Delete all messages </li>

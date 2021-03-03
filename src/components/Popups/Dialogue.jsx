@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import style from './Dialogue.module.scss';
 import { useDashboard } from '../../context';
@@ -10,7 +11,7 @@ function Dialogue({ id, inMenu, setShowDelete }) {
   useEffect(() => {
     if (inMenu) {
       setDeleteMessage(
-        'Are you sure you want to delete all? This cannot be undone.'
+        'Are you sure you want to delete all? This cannot be undone.',
       );
     }
     if (!inMenu) {
@@ -28,15 +29,6 @@ function Dialogue({ id, inMenu, setShowDelete }) {
     }
   }
 
-  function deleteSelected() {
-    if (inMenu) {
-      deleteAllAndSetSnackbar();
-    }
-    if (!inMenu) {
-      deleteOneAndSetSnackbar();
-    }
-  }
-
   function deleteAllAndSetSnackbar() {
     setShowDelete(false);
     dispatch({ type: 'DELETE_ALL' });
@@ -48,6 +40,15 @@ function Dialogue({ id, inMenu, setShowDelete }) {
     dispatch({ type: 'DELETE_ONE', payload: id });
     dispatch({ type: 'SET_SNACKBAR', payload: 'Successfully deleted message' });
     dispatch({ type: 'IS_RUNNING', payload: !state.isRunning });
+  }
+
+  function deleteSelected() {
+    if (inMenu) {
+      deleteAllAndSetSnackbar();
+    }
+    if (!inMenu) {
+      deleteOneAndSetSnackbar();
+    }
   }
 
   return (
@@ -76,3 +77,9 @@ function Dialogue({ id, inMenu, setShowDelete }) {
 }
 
 export default Dialogue;
+
+Dialogue.propTypes = {
+  id: PropTypes.number.isRequired,
+  inMenu: PropTypes.bool.isRequired,
+  setShowDelete: PropTypes.func.isRequired,
+};
