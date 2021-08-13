@@ -1,7 +1,8 @@
+import React from 'react';
 import Snackbar from './components/Popups/Snackbar';
 import Header from './components/Header/Header';
 import Messages from './components/Messages/Messages';
-import ExplainerModal from './components/Popups/ExplainerModal'
+import ExplainerModal from './components/Popups/ExplainerModal';
 import { DashboardProvider } from './context';
 
 function App() {
