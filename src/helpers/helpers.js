@@ -6,6 +6,7 @@ function getChipBackground(level) {
   if (level === 'status') return customGreen;
   if (level === 'error') return customRed;
 }
+
 function getChipColor(level) {
   if (level === 'warn') return 'black';
   if (level === 'status') return 'white';
@@ -28,6 +29,7 @@ function getPlural(state) {
     return 'messages';
   }
 }
+
 export {
   getChipBackground,
   getChipColor,

@@ -11,7 +11,7 @@ function Dialogue({ id, inMenu, setShowDelete }) {
   useEffect(() => {
     if (inMenu) {
       setDeleteMessage(
-        'Are you sure you want to delete all? This cannot be undone.',
+        'Are you sure you want to delete all? This cannot be undone.'
       );
     }
     if (!inMenu) {
@@ -77,9 +77,3 @@ function Dialogue({ id, inMenu, setShowDelete }) {
 }
 
 export default Dialogue;
-
-Dialogue.propTypes = {
-  id: PropTypes.number.isRequired,
-  inMenu: PropTypes.bool.isRequired,
-  setShowDelete: PropTypes.func.isRequired,
-};
