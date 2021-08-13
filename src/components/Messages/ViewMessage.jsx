@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,9 +19,7 @@ const useStyles = makeStyles({
     };
   },
 });
-function ViewMessage({
-  msg, text, setEditOrView, editOrView,
-}) {
+function ViewMessage({ msg, text, setEditOrView, editOrView }) {
   const [showDelete, setShowDelete] = useState(false);
   const classes = useStyles(msg);
 
@@ -47,10 +44,3 @@ function ViewMessage({
 }
 
 export default ViewMessage;
-
-ViewMessage.propTypes = {
-  msg: PropTypes.objectOf.string.isRequired,
-  text: PropTypes.bool.isRequired,
-  setEditOrView: PropTypes.func.isRequired,
-  editOrView: PropTypes.bool.isRequired,
-};

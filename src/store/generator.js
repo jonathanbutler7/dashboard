@@ -2,9 +2,7 @@ const chance = require('chance');
 const uuid = require('uuid').v4;
 const { levels } = require('./levels');
 
-const randomLevel = () => {
-  return levels[Math.floor(Math.random() * 3)];
-};
+const randomLevel = () => levels[Math.floor(Math.random() * 3)];
 
 const randomGenerator = () => {
   return {

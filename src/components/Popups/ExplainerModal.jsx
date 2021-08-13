@@ -7,7 +7,7 @@ import { useDashboard } from '../../context';
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    backgroundColor: '#333333',
+    backgroundColor: 'red',
     borderRadius: '.5rem',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -43,9 +43,7 @@ export default function SimpleModal() {
         <ol>
           <li>Display the messages</li>
           <li>
-            Filter messages by
-            {' '}
-            <code>level</code>
+            Filter messages by <code>level</code>
           </li>
           <li>Start/stop messages from the server</li>
           <li>Delete all messages </li>
