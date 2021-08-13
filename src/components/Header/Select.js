@@ -15,6 +15,7 @@ function SelectMenu({ inEditView, level, setLevel }) {
     options = levels;
     scopedLevel = level;
   }
+  
   if (!inEditView) {
     options = levelsAll;
     scopedLevel = state.select;

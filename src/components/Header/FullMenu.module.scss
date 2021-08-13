@@ -1,38 +1,35 @@
 .main {
-    background: #333333;
-    padding: 1rem;
-    position: relative;
-    display: flex;
-    flex-direction: row;
+  background: #333333;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .left,
 .right {
-    flex: 1;
+  flex: 1;
 }
 
 .right {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .status {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    h2 {
-
-        display: inline-block;
-        margin-right: 2rem;
-    }
-
+  h2 {
+    display: inline-block;
+    margin-right: 2rem;
+  }
 }
 
 @media only screen and (max-width: 650px) {
-
-    .main {
-        flex-direction: column;
-    }
+  .main {
+    flex-direction: column;
+  }
 }

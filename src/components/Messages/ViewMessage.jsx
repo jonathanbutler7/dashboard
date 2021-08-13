@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     };
   },
 });
+
 function ViewMessage({ msg, text, setEditOrView, editOrView }) {
   const [showDelete, setShowDelete] = useState(false);
   const classes = useStyles(msg);
