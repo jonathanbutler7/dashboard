@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import { customOrange, customGreen, customRed } from '../helpers/useStyles';
+import { customOrange, customGreen, customRed } from './useStyles';
 
 function getChipBackground(level) {
   if (level === 'warn') return customOrange;
